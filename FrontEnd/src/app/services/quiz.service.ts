@@ -13,7 +13,13 @@ export class QuizService {
 
   getAll() {
     return [
-      { id: 'db.json', name: 'some_name' }
+      { id: 'data/db.json', name: 'Asp.Net' }
     ];
+    
   }
 }
+
+
+
+
+
