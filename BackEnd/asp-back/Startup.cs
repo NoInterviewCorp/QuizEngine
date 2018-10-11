@@ -48,9 +48,7 @@ namespace Asp_Back {
                 routes.MapHub<ChatHub> ("/chatHub");
             });
             app.UseHttpsRedirection ();
-            app.UseStaticFiles ();
             app.UseCookiePolicy ();
-
             app.UseMvc ();
         }
     }

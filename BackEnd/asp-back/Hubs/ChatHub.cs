@@ -8,7 +8,10 @@ namespace Asp_Back.Hubs {
         public async Task SendMessage (string user, string message) {
             await Clients.All.SendAsync ("ReceiveMessage", user, message);
         }
-
+        public async Task NewMessage(string username, string message)
+        {
+            await Clients.All.SendAsync("messageReceived", username, message);
+        }
         public Task SendMessageToCaller (string message) {
             return Clients.Caller.SendAsync ("ReceiveMessage", message);
         }
