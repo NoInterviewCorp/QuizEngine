@@ -8,7 +8,10 @@ import { HomeComponentComponent } from './home-component/home-component.componen
 import { HeaderComponentComponent } from './home-component/header-component/header-component.component';
 import { QuizComponentComponent } from './home-component/quiz-component/quiz-component.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDividerModule} from '@angular/material/divider';
+
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatGridListModule} from '@angular/material/grid-list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +25,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     FormsModule,
     HttpClientModule,
     MatToolbarModule,
+    MatGridListModule,
+    MatDividerModule,
     BrowserAnimationsModule
   ],
   providers: [],

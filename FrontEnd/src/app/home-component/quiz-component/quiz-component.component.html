@@ -1,11 +1,11 @@
-<body>
+<!--
+  <body>
    
   <button (click)="showQuestions()">Show Questions</button><br><br>
   <br>
   <div class="cards">
   
     <div class="row" *ngFor="let rest of questions">
-      <!-- <div>This is resturant: {{resturant}}</div> -->
       <div class="card" style="width: 100%;">
         <div class="card-body">
           <h5 class="card-title" style="width:500%">{{rest.problemStatement}}</h5>
@@ -13,6 +13,14 @@
       </div>
     </div>
   </div>
-  </body>
+  </body> 
+  -->
+  <button (click)="showQuestions()">Show Questions</button><br><br>
+  <mat-grid-list cols="1" rowHeight="2:1">
+    <div class="row" *ngFor="let q of questions">
+    <mat-grid-tile>{{q.problemStatement}}</mat-grid-tile>
+  </div>
 
+
+  
   
