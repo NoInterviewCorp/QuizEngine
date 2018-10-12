@@ -7,7 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponentComponent } from './home-component/home-component.component';
 import { HeaderComponentComponent } from './home-component/header-component/header-component.component';
 import { QuizComponentComponent } from './home-component/quiz-component/quiz-component.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatToolbarModule} from '@angular/material/toolbar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,9 @@ import { QuizComponentComponent } from './home-component/quiz-component/quiz-com
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

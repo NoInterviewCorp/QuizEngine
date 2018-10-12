@@ -1,0 +1,64 @@
+{ "categories": [],
+
+    "questions": [
+    {
+        "questionId": 1,
+        "problemStatement": "Q1 Some Question 1",
+        "options": [
+            {"id": 1,
+            "content": "reverse()",
+            "isCorrect": true},
+            {"id": 2,
+            "content": "push()",
+            "isCorrect": false},
+            {"id": 3,
+            "content": "reduce()",
+            "isCorrect": false},
+            {"id": 4,
+            "content": "reduceRight()",
+            "isCorrect": false}
+        ],
+        "bloomLevel":1
+    },
+    {
+        "questionId": 2,
+        "problemStatement": "Q2 Some Question 2",
+        "options": [
+            {"id": 1,
+            "content": "reverse()",
+            "isCorrect": true},
+            {"id": 2,
+            "content": "push()",
+            "isCorrect": false},
+            {"id": 3,
+            "content": "reduce()",
+            "isCorrect": false},
+            {"id": 4,
+            "content": "reduceRight()",
+            "isCorrect": false}
+        ],
+        "bloomLevel":2
+    },
+    {
+        "questionId": 3,
+        "problemStatement": "Q3 Some Question 3",
+        "options": [
+            {"id": 1,
+            "content": "reverse()",
+            "isCorrect": false},
+            {"id": 2,
+            "content": "push()",
+            "isCorrect": true},
+            {"id": 3,
+            "content": "reduce()",
+            "isCorrect": false},
+            {"id": 4,
+            "content": "reduceRight()",
+            "isCorrect": false}
+        ],
+        "bloomLevel":1
+    }
+]
+}
+
+    
