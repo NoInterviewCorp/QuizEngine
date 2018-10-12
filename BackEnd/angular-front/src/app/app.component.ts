@@ -17,7 +17,7 @@ export class AppComponent {
     const username = new Date().getTime();
 
     const connection = new signalR.HubConnectionBuilder()
-      .withUrl('http://localhost:5001/chatHub')
+      .withUrl('https://localhost:5001/chatHub')
       .build();
 
     connection.start().then(() => console.log('connection established')).catch((err) => console.log("Error::: ", err));
