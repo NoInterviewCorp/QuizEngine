@@ -9,9 +9,11 @@ import { HeaderComponentComponent } from './home-component/header-component/head
 import { QuizComponentComponent } from './home-component/quiz-component/quiz-component.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDividerModule} from '@angular/material/divider';
-
+import { CountdownModule } from 'ngx-countdown';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatRadioModule} from '@angular/material/radio';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatToolbarModule,
     MatGridListModule,
     MatDividerModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatRadioModule,
+    CountdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]
