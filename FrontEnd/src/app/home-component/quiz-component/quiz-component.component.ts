@@ -49,6 +49,11 @@ nextQuestion(){
   this.currentQuestion = this.questions[this.questionCounter];
 }
 
+prevQuestion(){
+  this.questionCounter--;
+  this.currentQuestion = this.questions[this.questionCounter];
+}
+
 resetTimer(){
   this.i++;
   //this.score+=this.counter*2;
