@@ -3,57 +3,57 @@
     "questions": [
     {
         "questionId": 1,
-        "problemStatement": "Q1 Some Question 1",
+        "problemStatement": "Q1",
         "options": [
             {"id": 1,
-            "content": "reverse()",
+            "content": "q1o1()",
             "isCorrect": true},
             {"id": 2,
-            "content": "push()",
+            "content": "q1o2()",
             "isCorrect": false},
             {"id": 3,
-            "content": "reduce()",
+            "content": "q1o3()",
             "isCorrect": false},
             {"id": 4,
-            "content": "reduceRight()",
+            "content": "q1o4()",
             "isCorrect": false}
         ],
         "bloomLevel":1
     },
     {
         "questionId": 2,
-        "problemStatement": "Q2 Some Question 2",
+        "problemStatement": "Q2",
         "options": [
             {"id": 1,
-            "content": "reverse()",
+            "content": "q2o1()",
             "isCorrect": true},
             {"id": 2,
-            "content": "push()",
+            "content": "q2o2()",
             "isCorrect": false},
             {"id": 3,
-            "content": "reduce()",
+            "content": "q2o3()",
             "isCorrect": false},
             {"id": 4,
-            "content": "reduceRight()",
+            "content": "q2o4()",
             "isCorrect": false}
         ],
         "bloomLevel":2
     },
     {
         "questionId": 3,
-        "problemStatement": "Q3 Some Question 3",
+        "problemStatement": "Q3",
         "options": [
             {"id": 1,
-            "content": "reverse()",
+            "content": "q3o1()",
             "isCorrect": false},
             {"id": 2,
-            "content": "push()",
+            "content": "q3o2()",
             "isCorrect": true},
             {"id": 3,
-            "content": "reduce()",
+            "content": "q3o3()",
             "isCorrect": false},
             {"id": 4,
-            "content": "reduceRight()",
+            "content": "q3o4()",
             "isCorrect": false}
         ],
         "bloomLevel":1

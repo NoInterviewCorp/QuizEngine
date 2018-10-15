@@ -13,7 +13,6 @@ export class QuizComponentComponent implements OnInit {
   questions = [ ];
   counter:number = 5;
   i:number=0;
-  score:number=0;
   questionCounter = 0;
   shouldDisplayQuestions = false;
   currentQuestion : any;
@@ -31,7 +30,7 @@ export class QuizComponentComponent implements OnInit {
     this.currentQuestion = this.questions[this.questionCounter];
     this.shouldDisplayQuestions = true;
     this.gameClock();
-    console.log(this.questions[0].options);
+   // console.log(this.questions[0].options);
     });
   }
 

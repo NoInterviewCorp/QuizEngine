@@ -13,6 +13,7 @@ import { CountdownModule } from 'ngx-countdown';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatDividerModule,
     BrowserAnimationsModule,
     MatRadioModule,
+    MatButtonModule,
     CountdownModule
   ],
   providers: [],
