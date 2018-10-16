@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 namespace EFCoreDatabase
 {
-    public class Label
+    public class Technology
     {
         [Key,DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public string LabelId{get;set;}
-        public string labelname{get;set;}
+        public string TechnologyId{get;set;}
+        public string Technologyname{get;set;}
         public int NoteId{get;set;}
         
     }
