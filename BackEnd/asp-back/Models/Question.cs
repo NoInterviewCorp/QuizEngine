@@ -9,7 +9,7 @@ namespace EFCoreDatabase
         [Required]
         public string ProblemStatement{get;set;}
         public string ResourceLink{get;set;}
-        public int BloomLevel{get;set;}
+        public BloomsLevel BloomLevel{get;set;}
         public int TopicId{get;set;}
     }
 }

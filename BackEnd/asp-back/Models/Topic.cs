@@ -7,10 +7,10 @@ namespace EFCoreDatabase
 {
     public class Topic
     {
-        [Key ,DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int TopicId{get;set;}
-        [Required,MaxLength(50),MinLength(3)]
-        public int TechnologyId {get;set;}
-        
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int TopicId { get; set; }
+        public List<Question> Questions { get; set; }
+        public int TechnologyId { get; set; }
+
     }
 }
