@@ -11,5 +11,5 @@
   </div>
   <button mat-raised-button color="primary" *ngIf="showNextButton" (click)="nextQuestion()">Next</button>
 </div>
-
+<a routerLink="/result" routerLinkActive="active" button mat-raised-button color="primary" *ngIf="callResult" > Show Results</a>
 <!--  <countdown [config]="{leftTime: 30}"></countdown> -->
