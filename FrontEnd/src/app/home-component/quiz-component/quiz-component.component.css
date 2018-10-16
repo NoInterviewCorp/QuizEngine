@@ -2,3 +2,14 @@ mat-grid-tile {
     background: lightblue;
   }
 
+.radio-group {
+  
+    display: inline-flex;
+    flex-direction: column;
+  }
+  
+.radio-button {
+    margin: 5px;
+  }
+
+ 

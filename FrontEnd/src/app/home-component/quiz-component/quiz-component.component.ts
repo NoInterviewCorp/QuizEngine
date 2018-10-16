@@ -11,7 +11,7 @@ export class QuizComponentComponent implements OnInit {
 
   res: any = [ ];
   questions = [ ];
-  counter:number = 5;
+  counter:number = 10;
   i:number=0;
   questionCounter = 0;
   shouldDisplayQuestions = false;
@@ -45,6 +45,7 @@ export class QuizComponentComponent implements OnInit {
 }
 
 nextQuestion(){
+  this.resetTimer();
   this.questionCounter++;
   this.currentQuestion = this.questions[this.questionCounter];
 }
@@ -57,6 +58,6 @@ prevQuestion(){
 resetTimer(){
   this.i++;
   //this.score+=this.counter*2;
-  this.counter=5;
+  this.counter=10;
 }
 }
