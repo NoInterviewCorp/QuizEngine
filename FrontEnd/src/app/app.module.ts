@@ -15,12 +15,14 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonModule} from '@angular/material/button';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponentComponent,
     HeaderComponentComponent,
-    QuizComponentComponent,
+    QuizComponentComponent
+    
   ],
   imports: [
     BrowserModule,

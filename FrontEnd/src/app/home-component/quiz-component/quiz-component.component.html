@@ -20,7 +20,6 @@
   <div *ngIf="counter>=1">
     <mat-grid-list cols="1" rowHeight="4:1" *ngIf="shouldDisplayQuestions">
       <div class="row">
-
         <mat-grid-tile>
           <div>{{currentQuestion?.problemStatement}}</div>
           <br /><br /><br /><br /><br /><br /><br /><br />
@@ -28,12 +27,13 @@
             <mat-radio-button class="radio-button" *ngFor="let o of currentQuestion?.options" [value]="o.id">
               {{o.content}}
             </mat-radio-button>
-            <div class="example-selected-value">{{selectedOption}}</div>
-            <button mat-button (click)="nextQuestion()">Next</button>
+          </mat-radio-group>
+          <div class="example-selected-value">{{selectedOption}}</div>
+          <button mat-button (click)="nextQuestion()">Next</button>
         </mat-grid-tile>
-
       </div>
     </mat-grid-list>
   </div>
+</div>
 
-  <!--  <countdown [config]="{leftTime: 30}"></countdown> -->
+<!--  <countdown [config]="{leftTime: 30}"></countdown> -->

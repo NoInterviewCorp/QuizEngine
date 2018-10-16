@@ -14,6 +14,7 @@ export class QuizComponentComponent implements OnInit {
   counter:number = 10;
   i:number=0;
   questionCounter = 0;
+  selectedOption: string;
   shouldDisplayQuestions = false;
   currentQuestion : any;
   constructor(private http: HttpClient) { }
@@ -46,6 +47,8 @@ export class QuizComponentComponent implements OnInit {
 
 nextQuestion(){
   this.resetTimer();
+  console.log(this.selectedOption);
+  this.selectedOption = "";
   this.questionCounter++;
   this.currentQuestion = this.questions[this.questionCounter];
 }
