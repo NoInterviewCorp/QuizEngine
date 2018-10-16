@@ -18,6 +18,9 @@ export class QuizComponentComponent implements OnInit {
   shouldDisplayQuestions = false;
   currentQuestion : any;
   showNextButton = false;
+  showQuesButton = true;
+  quesCount = 0;
+  totalQues = 0;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -30,10 +33,13 @@ export class QuizComponentComponent implements OnInit {
     this.http.get('http://localhost:3000/questions').subscribe((res: any) => {
     this.questions = res;
     this.showNextButton = true;
+    this.showQuesButton = false; 
     this.currentQuestion = this.questions[this.questionCounter];
     this.shouldDisplayQuestions = true;
     this.gameClock();
-   // console.log(this.questions[0].options);
+    this.totalQues=this.questions.length;
+   //console.log(this.questions[0].options);
+    console.log(this.totalQues);
     });
   }
 
@@ -53,6 +59,11 @@ nextQuestion(){
   this.selectedOption = "";
   this.questionCounter++;
   this.currentQuestion = this.questions[this.questionCounter];
+  this.quesCount++;
+  if(this.quesCount==this.totalQues){
+    this.showNextButton=false;
+    
+  }
 }
 
 prevQuestion(){

@@ -1,25 +1,7 @@
-<!--
-  <body>
-   
-  <button (click)="showQuestions()">Show Questions</button><br><br>
-  <br>
-  <div class="cards">
-  
-    <div class="row" *ngFor="let rest of questions">
-      <div class="card" style="width: 100%;">
-        <div class="card-body">
-          <h5 class="card-title" style="width:500%">{{rest.problemStatement}}</h5>
-        </div>
-      </div>
-    </div>
-  </div>
-  </body> 
-  -->
 <div>
-  <button mat-raised-button color="primary" *ngIf="!showNextButton" (click)="showQuestions()">Show Questions</button><br><br>
+  <button mat-raised-button color="primary" *ngIf="showQuesButton" (click)="showQuestions()">Show Questions</button><br><br>
   <div *ngIf="counter>=1" class="question">
     <h4>{{currentQuestion?.problemStatement}}</h4>
-    <!-- <br /><br /><br /><br /><br /><br /><br /><br /> -->
     <mat-radio-group class="radio-group" [(ngModel)]="selectedOption">
       <mat-radio-button class="radio-button" *ngFor="let o of currentQuestion?.options" [value]="o.id">
         {{o.content}}

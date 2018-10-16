@@ -14,6 +14,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonModule} from '@angular/material/button';
+import { ResultComponent } from './result/result.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {MatButtonModule} from '@angular/material/button';
     AppComponent,
     HomeComponentComponent,
     HeaderComponentComponent,
-    QuizComponentComponent
+    QuizComponentComponent,
+    ResultComponent
     
   ],
   imports: [
