@@ -1,15 +1,14 @@
-mat-grid-tile {
-    background: lightblue;
-  }
-
-.radio-group {
-  
-    display: inline-flex;
-    flex-direction: column;
-  }
+.radio-group { 
+  display: inline-flex;
+  flex-direction: column;
+}
   
 .radio-button {
-    margin: 5px;
-  }
+  margin: 5px;
+}
 
- 
+.question{
+  margin: 5%;
+  /* background-color: lightblue; */
+  /* border: 1px solid black; */
+}

@@ -11,12 +11,13 @@ export class QuizComponentComponent implements OnInit {
 
   res: any = [ ];
   questions = [ ];
-  counter:number = 10;
+  counter:number = 300;
   i:number=0;
   questionCounter = 0;
   selectedOption: string;
   shouldDisplayQuestions = false;
   currentQuestion : any;
+  showNextButton = false;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -28,6 +29,7 @@ export class QuizComponentComponent implements OnInit {
     console.log('called showQuestions');
     this.http.get('http://localhost:3000/questions').subscribe((res: any) => {
     this.questions = res;
+    this.showNextButton = true;
     this.currentQuestion = this.questions[this.questionCounter];
     this.shouldDisplayQuestions = true;
     this.gameClock();
@@ -61,6 +63,6 @@ prevQuestion(){
 resetTimer(){
   this.i++;
   //this.score+=this.counter*2;
-  this.counter=10;
+  this.counter=300;
 }
 }
