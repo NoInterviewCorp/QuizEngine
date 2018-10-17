@@ -1,5 +1,6 @@
 <div>
   <button mat-raised-button color="primary" *ngIf="showQuesButton" (click)="showQuestions()">Show Questions</button><br><br>
+  <div *ngIf="showTimer" class="badge badge-info float-right">Time: {{counter}}</div>
   <div *ngIf="counter>=1" class="question">
     <h4>{{currentQuestion?.problemStatement}}</h4>
     <mat-radio-group class="radio-group" [(ngModel)]="selectedOption">

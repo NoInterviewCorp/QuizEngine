@@ -17,6 +17,7 @@ export class QuizComponentComponent implements OnInit {
   selectedOption: string;
   shouldDisplayQuestions = false;
   currentQuestion : any;
+  showTimer = false;
   showNextButton = false;
   showQuesButton = true;
   quesCount = 0;
@@ -29,7 +30,7 @@ export class QuizComponentComponent implements OnInit {
   }
 
   showQuestions()
-  {
+  { this.showTimer=true;
     console.log('called showQuestions');
     this.http.get('http://localhost:3000/questions').subscribe((res: any) => {
     this.questions = res;
@@ -71,9 +72,10 @@ nextQuestion(){
   this.questionCounter++;
   this.currentQuestion = this.questions[this.questionCounter];
   
-  if(this.quesCount==this.totalQues){
+  if(this.quesCount==this.totalQues) {
     this.showNextButton=false;
     this.callResult = true;
+    this.showTimer = false;
   }
 }
 
