@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace EFCoreDatabase
+namespace Learners.Models
 {
     public class Option
     {

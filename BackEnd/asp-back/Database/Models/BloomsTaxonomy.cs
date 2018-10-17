@@ -1,4 +1,4 @@
-namespace EFCoreDatabase
+namespace Learners.Models
 {
     public enum BloomsLevel
     {

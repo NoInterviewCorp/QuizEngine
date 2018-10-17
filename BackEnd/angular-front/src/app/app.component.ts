@@ -19,9 +19,9 @@ export class AppComponent {
     const connection = new signalR.HubConnectionBuilder()
       .withUrl('https://localhost:5001/chathub')
       .build();
-      connection.start().then(() => console.log('connection established')).catch((err) => console.log("Error::: ", err));
+    connection.start().then(() => console.log('connection established')).catch((err) => console.log('Error::: ', err));
     connection.on('messageReceived', (username: string, message: string) => {
-      let m = document.createElement('div');
+      const m = document.createElement('div');
 
       m.innerHTML =
         `<div class='message__author'>${username}</div><div>${message}</div>`;
@@ -38,8 +38,8 @@ export class AppComponent {
 
     btnSend.addEventListener('click', send);
     function send() {
-      connection.send("newMessage", username, tbMessage.value)
-        .then(() => tbMessage.value = "");
+      connection.send('newMessage', username, tbMessage.value)
+        .then(() => tbMessage.value = '');
     }
   }
 }

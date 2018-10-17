@@ -11,7 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-
+using Learners.Models;
+using Learners.Persistence;
 namespace asp_back {
     public class Startup {
         public Startup (IConfiguration configuration) {
@@ -23,6 +24,7 @@ namespace asp_back {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices (IServiceCollection services) {
             services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_1);
+            services.AddDbContext<LearnersContext>();
             services.AddCors (o => o.AddPolicy ("CorsPolicy", builder => {
                 builder
                     .AllowAnyMethod ()
