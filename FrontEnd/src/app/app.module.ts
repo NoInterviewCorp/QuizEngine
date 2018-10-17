@@ -16,6 +16,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonModule} from '@angular/material/button';
 import { ResultComponent } from './result/result.component';
 
+import { ChartsModule } from 'ng2-charts/ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { ResultComponent } from './result/result.component';
     BrowserAnimationsModule,
     MatRadioModule,
     MatButtonModule,
-    CountdownModule
+    CountdownModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,13 @@
 <p> results work! </p>
+
+<div style="display: block">
+    <canvas baseChart
+            [datasets]="radarChartData"
+            [labels]="radarChartLabels"
+            [chartType]="radarChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+  </div>
+
+
+<script src="node_modules/chart.js/src/chart.js"></script>
