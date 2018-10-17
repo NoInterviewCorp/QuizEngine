@@ -11,7 +11,7 @@ export class QuizComponentComponent implements OnInit {
 
   res: any = [ ];
   questions = [ ];
-  counter:number = 300;
+  counter:number = 5;
   i:number=0;
   questionCounter = 0;
   selectedOption: string;
@@ -37,30 +37,40 @@ export class QuizComponentComponent implements OnInit {
     this.showQuesButton = false; 
     this.currentQuestion = this.questions[this.questionCounter];
     this.shouldDisplayQuestions = true;
-    this.gameClock();
     this.totalQues=this.questions.length;
+    
+    this.gameClock();
    //console.log(this.questions[0].options);
-    console.log(this.totalQues);
+    console.log("total ques"+this.totalQues);
+    console.log("ques count"+this.quesCount);
+    
     });
   }
 
   gameClock() {
     const intervalMain = setInterval(() => {
     this.counter--;
+    console.log("counter:"+this.counter);
     if (this.counter <= 0) {
-      this.nextQuestion();
-      this.resetTimer();
-    }
+      this.nextQuestion();}
+      //this.resetTimer();}
+      if(this.quesCount==this.totalQues)
+  {
+    clearInterval(intervalMain);
+  }
+    
   }, 1000);
+  
 }
 
 nextQuestion(){
+  
   this.resetTimer();
   console.log(this.selectedOption);
   this.selectedOption = "";
   this.questionCounter++;
   this.currentQuestion = this.questions[this.questionCounter];
-  this.quesCount++;
+  
   if(this.quesCount==this.totalQues){
     this.showNextButton=false;
     this.callResult = true;
@@ -68,13 +78,14 @@ nextQuestion(){
 }
 
 prevQuestion(){
+  
   this.questionCounter--;
   this.currentQuestion = this.questions[this.questionCounter];
 }
 
 resetTimer(){
-  this.i++;
   //this.score+=this.counter*2;
-  this.counter=300;
+  this.quesCount++;
+  this.counter=5; 
 }
 }
