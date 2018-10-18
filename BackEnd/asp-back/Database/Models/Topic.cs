@@ -8,10 +8,10 @@ namespace Learners.Models
     public class Topic
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int TopicId { get; set; }
+        public string TopicId { get; set; }
         public string TopicName{get;set;}
         public List<Question> Questions { get; set; }
-        public int TechnologyId { get; set; }
+        public string TechnologyId { get; set; }
 
     }
 }

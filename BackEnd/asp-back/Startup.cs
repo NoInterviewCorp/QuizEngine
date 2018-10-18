@@ -25,6 +25,7 @@ namespace asp_back {
         public void ConfigureServices (IServiceCollection services) {
             services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_1);
             services.AddDbContext<LearnersContext>();
+            services.AddScoped<ILearnersMethods,LearnersMethod>();
             services.AddCors (o => o.AddPolicy ("CorsPolicy", builder => {
                 builder
                     .AllowAnyMethod ()
@@ -44,7 +45,7 @@ namespace asp_back {
             }
             app.UseCors ("CorsPolicy");
             app.UseSignalR (routes => {
-                routes.MapHub<ChatHub> ("/chathub");
+                routes.MapHub<TestHub> ("/test");
             });
             app.UseHttpsRedirection ();
             app.UseMvc ();

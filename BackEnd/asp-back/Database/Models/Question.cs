@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Learners.Models
 {
     public  class Question
     {
-        [Required]
-        public int? QuestionId{get;set;}
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public string QuestionId{get;set;}
         [Required]
         public string ProblemStatement{get;set;}
         public string ResourceLink{get;set;}
@@ -13,6 +15,6 @@ namespace Learners.Models
         public BloomsLevel BloomLevel{get;set;}
         public bool HasPublished { get; set; }
 
-        public int TopicId{get;set;}
+        public string TopicId{get;set;}
     }
 }

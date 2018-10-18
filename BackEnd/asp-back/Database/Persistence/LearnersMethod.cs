@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Learners.Models;
@@ -5,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Learners.Persistence
 {
-    public class LearnersMethod : ILearnersMethond
+    public class LearnersMethod : ILearnersMethods
     {
         private LearnersContext context;
         LearnersMethod(LearnersContext _context)
@@ -21,6 +22,7 @@ namespace Learners.Persistence
         /// <returns>List of question from the topic of asked technology and blooms level</returns>
         public List<Question> GetAllQuestions(string technology, string topic)
         {
+            //var obj=Guid.NewGuid().ToString();
             var topics = GetAllTopics(technology);
             if (topics == null)
             {
@@ -31,7 +33,7 @@ namespace Learners.Persistence
             {
                 return null;
             }
-            int topicId = topicObj.TopicId;
+            string topicId = topicObj.TopicId;
             List<Question> questions = context.Questions
                                         .Include(q => q.Options)
                                         .Where(q => q.HasPublished && q.TopicId == topicId)
@@ -68,7 +70,7 @@ namespace Learners.Persistence
             List<Topic> topics = tech.Topics;
             return topics;
         }
-        public bool CheckOption(int optionId)
+        public bool CheckOption(string optionId)
         {
             var ans =context.Options.FirstOrDefault(t=>t.OptionId==optionId);
             if(ans.IsCorrect==true)
@@ -76,6 +78,11 @@ namespace Learners.Persistence
                 return true;
             }
             return false;
+        }
+        public int BloomLevel(string QuestionId)
+        {
+            var level = context.Questions.FirstOrDefault(t=>t.QuestionId==QuestionId);
+            return (int)level.BloomLevel;
         }
     }
 }
