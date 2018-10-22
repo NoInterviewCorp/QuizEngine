@@ -70,9 +70,9 @@ namespace Learners.Persistence
             List<Topic> topics = tech.Topics;
             return topics;
         }
-        public bool CheckOption(string optionId)
+        public bool CheckOption(string OptionId)
         {
-            var ans =context.Options.FirstOrDefault(t=>t.OptionId==optionId);
+            var ans =context.Options.FirstOrDefault(t=>t.OptionId==OptionId);
             if(ans.IsCorrect==true)
             {
                 return true;
@@ -83,6 +83,15 @@ namespace Learners.Persistence
         {
             var level = context.Questions.FirstOrDefault(t=>t.QuestionId==QuestionId);
             return (int)level.BloomLevel;
+        }
+        public int Evaluate(string QuestionId,string OptionId)
+        {
+            if(CheckOption(OptionId))
+            {
+                return BloomLevel(QuestionId);
+            }
+            else
+                return 0;
         }
     }
 }
