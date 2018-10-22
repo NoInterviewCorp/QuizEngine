@@ -20,7 +20,7 @@ namespace Learners.Persistence
         /// <param name="topic">Topic in the stated topic</param>
         /// <param name="blooms">Bloom level</param>
         /// <returns>List of question from the topic of asked technology and blooms level</returns>
-        public List<Question> GetAllQuestions(string technology, string topic)
+        public List<Question> GetAllQuestions(string technology, string topic,BloomsLevel BloomLevel)
         {
             //var obj=Guid.NewGuid().ToString();
             var topics = GetAllTopics(technology);
@@ -36,7 +36,7 @@ namespace Learners.Persistence
             string topicId = topicObj.TopicId;
             List<Question> questions = context.Questions
                                         .Include(q => q.Options)
-                                        .Where(q => q.HasPublished && q.TopicId == topicId)
+                                        .Where(q => q.HasPublished && q.TopicId == topicId && q.BloomLevel==BloomLevel)
                                         .ToList();
             return questions;
         }

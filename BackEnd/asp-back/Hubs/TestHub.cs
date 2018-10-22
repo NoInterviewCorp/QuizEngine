@@ -5,37 +5,40 @@ using Microsoft.AspNetCore.SignalR;
 using Learners.Persistence;
 using Learners.Models;
 
-namespace asp_back.hubs {
-    public class TestHub : Hub {
+namespace asp_back.hubs
+{
+    public class TestHub : Hub
+    {
         private ILearnersMethods methods;
         TestHub(ILearnersMethods _methods)
         {
-            this.methods=_methods;
+            this.methods = _methods;
         }
-        public async Task NewMessage(string username, string message)
-        {
-            await Clients.All.SendAsync("messageReceived", username, message);
-        }
-        public async Task SendMessage (string user, string message) {
-            await Clients.All.SendAsync ("ReceiveMessage", user, message);
-        }
-
-        public Task SendMessageToCaller (string message) {
-            return Clients.Caller.SendAsync ("ReceiveMessage", message);
-        }
-        public async Task GetAllTechnoligies ()
+        public async Task GetAllTechnoligies()
         {
             var tech = methods.GetAllTechnologies();
-            await Clients.Caller.SendAsync("GetAllTechnoligies",tech);
+            await Clients.Caller.SendAsync("GotAllTechnoligies", tech);
         }
-        public override async Task OnConnectedAsync () {
-            await Groups.AddToGroupAsync (Context.ConnectionId, "SignalR Users");
-            await base.OnConnectedAsync ();
+        public async Task GetAllQuestions(string technology, string topic,int blooms)
+        {
+            var questions = methods.GetAllQuestions(technology, topic,(BloomsLevel)blooms);
+            await Clients.Caller.SendAsync("GotAllQuestions", questions);
+        }
+        public async Task GetAllTopics(string tech)
+        {
+            var topics = methods.GetAllTopics(tech);
+            await Clients.Caller.SendAsync("GotAllQuestions",topics);
+        }
+        public override async Task OnConnectedAsync()
+        {
+            await Groups.AddToGroupAsync(Context.ConnectionId, "SignalR Users");
+            await base.OnConnectedAsync();
         }
 
-        public override async Task OnDisconnectedAsync (Exception exception) {
-            await Groups.RemoveFromGroupAsync (Context.ConnectionId, "SignalR Users");
-            await base.OnDisconnectedAsync (exception);
+        public override async Task OnDisconnectedAsync(Exception exception)
+        {
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, "SignalR Users");
+            await base.OnDisconnectedAsync(exception);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Learners.Persistence
     {
         List<Technology> GetAllTechnologies();
         List<Topic> GetAllTopics(string technology);
-        List<Question> GetAllQuestions(string technology,string topic);
+        List<Question> GetAllQuestions(string technology,string topic,BloomsLevel blooms);
         bool CheckOption(string optionId); 
     }
 }
