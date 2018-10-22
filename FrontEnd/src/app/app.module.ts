@@ -15,6 +15,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonModule} from '@angular/material/button';
 import { ResultComponent } from './result/result.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
@@ -40,6 +41,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     MatRadioModule,
     MatButtonModule,
     CountdownModule,
+    MatProgressBarModule,
     ChartsModule
   ],
   providers: [],

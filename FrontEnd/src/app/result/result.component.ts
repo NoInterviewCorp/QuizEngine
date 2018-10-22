@@ -15,8 +15,7 @@ export class ResultComponent implements OnInit {
   public radarChartLabels:string[] = ['Components and Templates', 'Services', 'Routing', 'Observables', 'Testing'];
 
   public radarChartData:any = [
-    {data: [1,3,2,4,5,3]},
-    {data: [4,3,4,2,1,6]}
+    {data: [1,3,2,4,5,3]}
   ];
   public radarChartType:string = 'radar';
   public options = {

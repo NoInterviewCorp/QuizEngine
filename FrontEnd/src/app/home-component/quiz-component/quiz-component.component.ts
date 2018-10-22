@@ -23,6 +23,8 @@ export class QuizComponentComponent implements OnInit {
   quesCount = 0;
   totalQues = 0;
   callResult = false;
+  value=0;
+  
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -71,7 +73,7 @@ nextQuestion(){
   this.selectedOption = "";
   this.questionCounter++;
   this.currentQuestion = this.questions[this.questionCounter];
-  
+  this.value=this.value+20;
   if(this.quesCount==this.totalQues) {
     this.showNextButton=false;
     this.callResult = true;
