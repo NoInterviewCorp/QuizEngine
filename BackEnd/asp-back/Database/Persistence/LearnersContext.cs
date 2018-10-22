@@ -11,6 +11,7 @@ namespace Learners.Persistence
         public DbSet<Topic> Topics{get;set;}
         public DbSet<Question> Questions{get;set;}
         public DbSet<Option> Options{get;set;}
+        public DbSet<Threshold> Thresholds{get;set;}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;");

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Learners.Models;
@@ -92,6 +91,18 @@ namespace Learners.Persistence
             }
             else
                 return 0;
+        }
+        public int CheckBloomLevelOfTopic(int score)
+        {
+            var values = context.Thresholds;
+            foreach (var val in values)
+            {
+               if(Enumerable.Range(val.MinThreshold,val.MaxThreshold).Contains(score))
+               {
+                   return val.BloomLevel;
+               }
+            }
+            return 0;
         }
     }
 }
