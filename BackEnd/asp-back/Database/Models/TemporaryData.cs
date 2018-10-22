@@ -10,7 +10,7 @@ namespace Learners.Models
         public string UserName { get; set; }
         public string QuizId { get; set; }
         public string TechName { get; set; }
-        public int TpoicCompleted { get; set; }
+        public int TopicCompleted { get; set; }
         public BloomsLevel Blooms { get; set; }
         public DateTime AttemptedOn { get; set; }
         public bool IsCompleted { get; set; }
