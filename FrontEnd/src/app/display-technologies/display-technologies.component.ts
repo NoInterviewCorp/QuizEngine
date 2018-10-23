@@ -11,7 +11,7 @@ export class DisplayTechnologiesComponent implements OnInit {
 
   technology = [ ];
   //tech : any;
-
+  areAllLocked = true;
   constructor(private http: HttpClient) { }
 
   ngOnInit() { }
