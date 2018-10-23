@@ -20,6 +20,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { DisplayTechnologiesComponent } from './display-technologies/display-technologies.component';
 import {MatCardModule} from '@angular/material/card';
 import { CardComponent } from './display-technologies/card/card.component';
+import { TopicComponent } from './display-technologies/topic/topic.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CardComponent } from './display-technologies/card/card.component';
     QuizComponentComponent,
     ResultComponent,
     DisplayTechnologiesComponent,
-    CardComponent
+    CardComponent,
+    TopicComponent
     
   ],
   imports: [
