@@ -4,3 +4,12 @@
     flex-wrap: wrap;
     padding-top: 20px;
   }
+
+.button-flex {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-top: 40px;
+    width: 30%;
+    margin: auto;
+}

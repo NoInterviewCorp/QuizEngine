@@ -1,12 +1,14 @@
 
 <app-header-component>
 </app-header-component>
-  <button mat-raised-button color="primary" (click)="showTechnologies()">Show Technologies</button><br><br>
+  <div class="button-flex" > 
+  <button mat-raised-button color="primary" (click)="showTechnologies()">Show Technologies</button>
+ </div>
      <div class="flex-container">
       <div  *ngFor="let tech of technology">
         <mat-card class="tech-card">
           <mat-card-title>{{tech.Name}}</mat-card-title>
-          <button mat-button>Start Quiz</button>
+          <button mat-button >Start Quiz</button>
         </mat-card>
       </div>
 </div>
