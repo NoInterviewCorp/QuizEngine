@@ -8,7 +8,6 @@ import { HomeComponentComponent } from './home-component/home-component.componen
 import { HeaderComponentComponent } from './home-component/header-component/header-component.component';
 import { QuizComponentComponent } from './home-component/quiz-component/quiz-component.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDividerModule} from '@angular/material/divider';
 import { CountdownModule } from 'ngx-countdown';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -16,8 +15,9 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonModule} from '@angular/material/button';
 import { ResultComponent } from './result/result.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-
+import {MatDividerModule} from '@angular/material/divider';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { DisplayTechnologiesComponent } from './display-technologies/display-technologies.component';
 
 
 @NgModule({
@@ -26,7 +26,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     HomeComponentComponent,
     HeaderComponentComponent,
     QuizComponentComponent,
-    ResultComponent
+    ResultComponent,
+    DisplayTechnologiesComponent
     
   ],
   imports: [
@@ -42,6 +43,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     MatButtonModule,
     CountdownModule,
     MatProgressBarModule,
+    MatDividerModule,
     ChartsModule
   ],
   providers: [],
