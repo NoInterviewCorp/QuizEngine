@@ -1,5 +1,11 @@
-<body>
 
+<app-header-component>
+</app-header-component>
   <button mat-raised-button color="primary" (click)="showTechnologies()">Show Technologies</button><br><br>
-
-</body>
+     <div class="flex-container">
+      <div  *ngFor="let tech of technology">
+        <mat-card class="tech-card">
+          <mat-card-title>{{tech.Name}}</mat-card-title>
+        </mat-card>
+      </div>
+</div>

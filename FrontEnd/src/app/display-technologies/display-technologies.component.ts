@@ -9,11 +9,17 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class DisplayTechnologiesComponent implements OnInit {
 
+  technology = [ ];
+  //tech : any;
+
   constructor(private http: HttpClient) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
+
   showTechnologies() {
+    this.http.get('http://localhost:3000/Technology').subscribe((res: any) => {
+      this.technology = res;
+    });
 
   }
 

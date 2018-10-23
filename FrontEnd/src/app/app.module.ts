@@ -18,7 +18,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatDividerModule} from '@angular/material/divider';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { DisplayTechnologiesComponent } from './display-technologies/display-technologies.component';
-
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,8 @@ import { DisplayTechnologiesComponent } from './display-technologies/display-tec
     CountdownModule,
     MatProgressBarModule,
     MatDividerModule,
-    ChartsModule
+    ChartsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

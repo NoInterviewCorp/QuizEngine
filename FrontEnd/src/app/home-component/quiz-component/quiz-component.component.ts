@@ -9,7 +9,7 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class QuizComponentComponent implements OnInit {
 
-  res: any = [ ];
+  //res: any = [ ];
   questions = [ ];
   counter:number = 5;
   i:number=0;

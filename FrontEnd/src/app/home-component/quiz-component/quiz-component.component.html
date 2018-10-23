@@ -1,7 +1,6 @@
 <div>
   <button mat-raised-button color="primary" *ngIf="showQuesButton" (click)="showQuestions()">Show Questions</button><br><br>
   <div *ngIf="showTimer" class="badge">Time: {{counter}}</div>
-  <!--<mat-progress-bar mode="determinate" value="20"></mat-progress-bar> -->
   <div *ngIf="showProgressBar">
   <section class="progressbar-section">
     <mat-progress-bar mode="determinate"
