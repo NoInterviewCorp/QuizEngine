@@ -10,6 +10,7 @@ namespace asp_back.hubs
     public class TestHub : Hub
     {
         private ILearnersMethods methods;
+        private TemporaryData temp = new TemporaryData();
         TestHub(ILearnersMethods _methods)
         {
             this.methods = _methods;
@@ -27,17 +28,29 @@ namespace asp_back.hubs
         public async Task GetAllTopics(string tech)
         {
             var topics = methods.GetAllTopics(tech);
-            await Clients.Caller.SendAsync("GotAllQuestions",topics);
+            await Clients.Caller.SendAsync("GotAllTopics",topics);
+        }
+        public async Task OnStart(string username,string tech)
+        {
+            string id = new Guid().ToString();
+            temp.UserName=username;
+            temp.TechName=tech;
+            temp.QuizId = id;
+            temp.IsCompleted = false;
+            temp.AttemptedOn = DateTime.Today.ToString("dd/MM/yyyy");
+            temp.AttemptedOn += " "+DateTime.Now.ToString("HH:mm:ss");
+            temp.TempScore=0;
+            temp.Blooms=0;
+            methods.OnStart(temp);
+            await Clients.Caller.SendAsync("Temporary Object Created");
         }
         public override async Task OnConnectedAsync()
         {
-            await Groups.AddToGroupAsync(Context.ConnectionId, "SignalR Users");
             await base.OnConnectedAsync();
         }
 
         public override async Task OnDisconnectedAsync(Exception exception)
         {
-            await Groups.RemoveFromGroupAsync(Context.ConnectionId, "SignalR Users");
             await base.OnDisconnectedAsync(exception);
         }
     }

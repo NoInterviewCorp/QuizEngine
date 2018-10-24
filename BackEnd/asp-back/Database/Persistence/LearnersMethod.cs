@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Learners.Models;
 using Microsoft.EntityFrameworkCore;
-
+using System;
 namespace Learners.Persistence
 {
     public class LearnersMethod : ILearnersMethods
@@ -83,7 +83,7 @@ namespace Learners.Persistence
             var level = context.Questions.FirstOrDefault(t=>t.QuestionId==QuestionId);
             return (int)level.BloomLevel;
         }
-        public int Evaluate(string QuestionId,string OptionId)
+        public int EvaluateBloomLevel(string QuestionId,string OptionId)
         {
             if(CheckOption(OptionId))
             {
@@ -103,6 +103,19 @@ namespace Learners.Persistence
                }
             }
             return 1;
+        }
+        public void AddResult(TemporaryData temporary)
+        {
+            context.Temporaries.Add(temporary);
+            context.SaveChanges();
+        }
+        // public void CalculateResult()
+        // {
+        // }
+        public void OnStart(TemporaryData temp)
+        {
+            context.Temporaries.Add(temp);
+            context.SaveChanges();
         }
     }
 }

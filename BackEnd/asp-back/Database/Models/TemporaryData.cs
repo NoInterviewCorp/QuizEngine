@@ -12,7 +12,8 @@ namespace Learners.Models
         public string TechName { get; set; }
         public int TopicCompleted { get; set; }
         public BloomsLevel Blooms { get; set; }
-        public DateTime AttemptedOn { get; set; }
+        public string AttemptedOn { get; set; }
+        public int TempScore { get; set; }
         public bool IsCompleted { get; set; }
     }
 }
