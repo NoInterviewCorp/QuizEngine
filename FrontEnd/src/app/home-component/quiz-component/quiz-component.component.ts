@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
+import { QuizService } from 'src/app/services/quiz.service';
  
 @Component({
   selector: 'app-quiz-component',
@@ -27,7 +28,9 @@ export class QuizComponentComponent implements OnInit {
   value=0;
   valueInc=0;
   duration=20; //timer duration
-  constructor(private http: HttpClient) { }
+  techName: string; subTopicName: string;
+
+  constructor(private http: HttpClient, private quiz_service: QuizService) { }
 
   ngOnInit() {
     
@@ -37,21 +40,25 @@ export class QuizComponentComponent implements OnInit {
   { this.showTimer=true;
     this.showProgressBar=true;
     console.log('called showQuestions');
-    this.http.get('http://localhost:3000/questions').subscribe((res: any) => {
-    this.questions = res;
-    this.showNextButton = true;
-    this.showQuesButton = false; 
-    this.currentQuestion = this.questions[this.questionCounter];
-    this.shouldDisplayQuestions = true;
-    this.totalQues=this.questions.length;
-    this.valueInc=100/this.totalQues;
+    this.techName=this.quiz_service.getTechName();
+    this.subTopicName=this.quiz_service.getTopicName();
+    console.log('TECHNAME:'+this.techName+' and SUBTOPICNAME:'+this.subTopicName);
+
+  //   this.http.get('http://localhost:3000/Technology').subscribe((res: any) => {
+  //   this.questions = res;
+  //   this.showNextButton = true;
+  //   this.showQuesButton = false; 
+  //   this.currentQuestion = this.questions[this.questionCounter];
+  //   this.shouldDisplayQuestions = true;
+  //   this.totalQues=this.questions.length;
+  //   this.valueInc=100/this.totalQues;
     
-    this.gameClock();
-   //console.log(this.questions[0].options);
-    console.log("total ques"+this.totalQues);
-    console.log("ques count"+this.quesCount);
+  //   this.gameClock();
+  //  //console.log(this.questions[0].options);
+  //   console.log("total ques"+this.totalQues);
+  //   console.log("ques count"+this.quesCount);
     
-    });
+  //   });
   }
 
   gameClock() {
