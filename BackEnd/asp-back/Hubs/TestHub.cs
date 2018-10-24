@@ -44,6 +44,29 @@ namespace asp_back.hubs
             methods.OnStart(temp);
             await Clients.Caller.SendAsync("Temporary Object Created");
         }
+        public async Task OnFinish()
+        {
+            UserData data = new UserData();
+            data.UserName = temp.UserName;
+            foreach (var subdata in data.QuizDatas)
+            {
+                subdata.UserName = temp.UserName;
+                subdata.AttemptedOn = temp.AttemptedOn;
+                subdata.Blooms = temp.Blooms;
+                subdata.IsCompleted = true;
+                subdata.QuizId = temp.QuizId;
+                subdata.TechName = temp.TechName;
+                subdata.TopicCompleted = temp.TopicCompleted;
+            }
+            methods.OnFinish(data);
+            await Clients.Caller.SendAsync("Data Seeded");
+        }
+        public async Task CheckQuiz(string tech,string username)
+        {
+            bool AttemptedEarlier =false;
+            AttemptedEarlier = methods.CheckQuiz(tech,username);
+            await Clients.Caller.SendAsync("Got the Response",AttemptedEarlier);
+        }
         public override async Task OnConnectedAsync()
         {
             await base.OnConnectedAsync();

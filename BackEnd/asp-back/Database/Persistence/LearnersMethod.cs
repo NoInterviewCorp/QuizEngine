@@ -117,5 +117,24 @@ namespace Learners.Persistence
             context.Temporaries.Add(temp);
             context.SaveChanges();
         }
+
+        public void OnFinish(UserData data)
+        {
+            context.UserDatas.Add(data);
+            context.SaveChanges();
+        }
+
+        public bool CheckQuiz(string tech, string username)
+        {
+            var check = context.QuizDatas.FirstOrDefault(t => t.UserName == username && t.TechName == tech);
+            if(check != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

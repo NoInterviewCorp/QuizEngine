@@ -10,5 +10,7 @@ namespace Learners.Persistence
         List<Question> GetAllQuestions(string technology,string topic,BloomsLevel blooms);
         bool CheckOption(string optionId);
         void OnStart(TemporaryData temp);
+        void OnFinish(UserData data);
+        bool CheckQuiz(string tech,string username);
     }
 }
