@@ -1,5 +1,5 @@
 <div>
-  
+
 <div class = "button-flex">
   <button mat-raised-button color="primary" *ngIf="showQuesButton" (click)="showQuestions()">Show Questions</button><br><br>
 </div>
@@ -16,10 +16,10 @@
   </div>
 
   <div *ngIf="counter>=1" class="question">
-    <h4>{{currentQuestion?.problemStatement}}</h4>
+    <h4>{{currentQuestion?.ProblemStatement}}</h4>
     <mat-radio-group class="radio-group" [(ngModel)]="selectedOption">
-      <mat-radio-button class="radio-button" *ngFor="let o of currentQuestion?.options" [value]="o.id">
-        {{o.content}}
+      <mat-radio-button class="radio-button" *ngFor="let o of currentQuestion?.Options" [value]="o.Id">
+        {{o.Content}}
       </mat-radio-button>
     </mat-radio-group>
     <p class="example-selected-value">{{selectedOption}}</p>

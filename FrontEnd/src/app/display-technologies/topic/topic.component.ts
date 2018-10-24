@@ -24,7 +24,8 @@ export class TopicComponent implements OnInit {
 
   onClick() {
     console.log("I belong to " + this.tech.Name + " and Topic is " + this.name);
-    this.quiz_service.setName(this.tech.Name,this.name);
+    //this.quiz_service.setName(this.tech.Name,this.name);
+    this.quiz_service.setName(this.tech,this.name);
     this.router.navigate(['quiz']);
   }
 

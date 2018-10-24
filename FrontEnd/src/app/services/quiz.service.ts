@@ -8,7 +8,7 @@ export class QuizService {
 
   constructor(private http: HttpClient) { }
 
-  tech : string;
+  tech : Technology;
   sTopic : string;
   // get(url: string) {
   //   return this.http.get(url);
@@ -21,7 +21,7 @@ export class QuizService {
     
   // }
 
-  setName(t:string,s:string) {
+  setName(t:Technology,s:string) {
     this.tech=t;
     this.sTopic=s;
   }
@@ -30,6 +30,15 @@ export class QuizService {
   }
   getTopicName() {
     return this.sTopic;
+  }
+  getQuestions() {
+    let selectedTopic=this.tech.Topics.find(x=>x.Name==this.sTopic);
+    console.log(this.tech);
+    if(selectedTopic!=null)
+    { 
+      return selectedTopic.Questions;
+    }
+    return null;
   }
 
 }

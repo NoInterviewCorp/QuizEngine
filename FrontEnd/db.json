@@ -6,311 +6,66 @@
                 {
                     "TopicId": "1",
                     "Name": "Components and Templates",
-                     "Questions" : [
-                         {
-                             "QuestionId": 1,
-                             "ProblemStatement": "Angular-Components and templates Q1",
-                             "Options": [
-                                 {
-                                     "OptionId":1,
-                                     "Content": "angular-components and templates- q1o1",
-                                     "IsCorrect": true
-                                 },
-                                 {
-                                    "OptionId":2,
+                    "Questions": [
+                        {
+                            "QuestionId": 1,
+                            "ProblemStatement": "Angular-Components and templates Q1",
+                            "Options": [
+                                {
+                                    "OptionId": 1,
+                                    "Content": "angular-components and templates- q1o1",
+                                    "IsCorrect": true
+                                },
+                                {
+                                    "OptionId": 2,
                                     "Content": "angular-components and templates- q1o2",
                                     "IsCorrect": false
-
-                                 },
-                                 {
-                                    "OptionId":3,
+                                },
+                                {
+                                    "OptionId": 3,
                                     "Content": "angular-components and templates- q1o3",
                                     "IsCorrect": false
-                                 },
-                                 {
-                                    "OptionId":4,
+                                },
+                                {
+                                    "OptionId": 4,
                                     "Content": "angular-components and templates- q1o4",
                                     "IsCorrect": false
-                                 },
+                                }
+                            ],
+                            "ResourceLink": "your.web.site",
+                            "BloomLevel": 1
+                        },
                         {
-                             "QuestionId": 2,
-                             "ProblemStatement": "Angular-Components and templates Q2",
-                             "Options": [
+                            "QuestionId": 2,
+                            "ProblemStatement": "Angular-Components and templates Q2",
+                            "Options": [
                                 {
-                                    "OptionId":1,
+                                    "OptionId": 1,
                                     "Content": "angular-components and templates- q2o1",
                                     "IsCorrect": true
                                 },
                                 {
-                                   "OptionId":2,
-                                   "Content": "angular-components and templates- q2o2",
-                                   "IsCorrect": false
-                               },
-                                {
-                                   "OptionId":3,
-                                   "Content": "angular-components and templates- q2o3",
-                                   "IsCorrect": false
+                                    "OptionId": 2,
+                                    "Content": "angular-components and templates- q2o2",
+                                    "IsCorrect": false
                                 },
                                 {
-                                   "OptionId":4,
-                                   "Content": "angular-components and templates- q2o4",
-                                   "IsCorrect": false
+                                    "OptionId": 3,
+                                    "Content": "angular-components and templates- q2o3",
+                                    "IsCorrect": false
+                                },
+                                {
+                                    "OptionId": 4,
+                                    "Content": "angular-components and templates- q2o4",
+                                    "IsCorrect": false
                                 }
-                             ]
-                         }
-                     ]
-                }
-            ]
-        },
-        {
-            "TopicId": "2",
-            "Name": "Services",
-             "Questions" : [
-                 {
-                     "QuestionId": 1,
-                     "ProblemStatement": "Angular- Services Q1",
-                     "Options": [
-                         {
-                             "OptionId":1,
-                             "Content": "Angular- Services- q1o1",
-                             "IsCorrect": true
-                         },
-                         {
-                            "OptionId":2,
-                            "Content": "Angular- Services- q1o2",
-                            "IsCorrect": false
-
-                         },
-                         {
-                            "OptionId":3,
-                            "Content": "Angular-Services- q1o3",
-                            "IsCorrect": false
-                         },
-                         {
-                            "OptionId":4,
-                            "Content": "Angular-Services- q1o4",
-                            "IsCorrect": false
-                         },
-                {
-                     "QuestionId": 2,
-                     "ProblemStatement": "Angular-Services Q2",
-                     "Options": [
-                        {
-                            "OptionId":1,
-                            "Content": "angular- services- q2o1",
-                            "IsCorrect": false
-                        },
-                        {
-                           "OptionId":2,
-                           "Content": "angular-services- q2o2",
-                           "IsCorrect": true
-                       },
-                        {
-                           "OptionId":3,
-                           "Content": "angular-services- q2o3",
-                           "IsCorrect": false
-                        },
-                        {
-                           "OptionId":4,
-                           "Content": "angular-services- q2o4",
-                           "IsCorrect": false
+                            ],
+                            "ResourceLink": "your.web.site",
+                            "BloomLevel": 1
                         }
-                     ]
-                 },
-                 {
-                    "QuestionId": 3,
-                    "ProblemStatement": "angular-Services Q3",
-                    "Options": [
-                       {
-                           "OptionId":1,
-                           "Content": "angular-services- q3o1",
-                           "IsCorrect": false
-                       },
-                       {
-                          "OptionId":2,
-                          "Content": "angular-services- q3o2",
-                          "IsCorrect": true
-                      },
-                       {
-                          "OptionId":3,
-                          "Content": "angular-services- q3o3",
-                          "IsCorrect": false
-                       },
-                       {
-                          "OptionId":4,
-                          "Content": "angular-services- q3o4",
-                          "IsCorrect": false
-                       }
                     ]
                 }
-
-             ]
-        }
-    ]
-}
-
-    ]
-},
-
-
-
-
-{
-    "Name": "C#",
-    "Topics": [
-        {
-            "TopicId": "1",
-            "Name": "Intro",
-             "Questions" : [
-                 {
-                     "QuestionId": 1,
-                     "ProblemStatement": "C#-intro Q1",
-                     "Options": [
-                         {
-                             "OptionId":1,
-                             "Content": "C#-intro - q1o1",
-                             "IsCorrect": true
-                         },
-                         {
-                            "OptionId":2,
-                            "Content": "C#-intro - q1o2",
-                            "IsCorrect": false
-
-                         },
-                         {
-                            "OptionId":3,
-                            "Content": "C#-intro - q1o3",
-                            "IsCorrect": false
-                         },
-                         {
-                            "OptionId":4,
-                            "Content": "C#-intro - q1o4",
-                            "IsCorrect": false
-                         },
-                {
-                     "QuestionId": 2,
-                     "ProblemStatement": "C#-intro  Q2",
-                     "Options": [
-                        {
-                            "OptionId":1,
-                            "Content": "C#-intro - q2o1",
-                            "IsCorrect": true
-                        },
-                        {
-                           "OptionId":2,
-                           "Content": "C#-intro - q2o2",
-                           "IsCorrect": false
-                       },
-                        {
-                           "OptionId":3,
-                           "Content": "C#-intro - q2o3",
-                           "IsCorrect": false
-                        },
-                        {
-                           "OptionId":4,
-                           "Content": "C#-intro - q2o4",
-                           "IsCorrect": false
-                        }
-                     ]
-                 }
-             ]
-        }
-    ]
-},
-{
-    "TopicId": "2",
-    "Name": "Syntax",
-     "Questions" : [
-         {
-             "QuestionId": 1,
-             "ProblemStatement": "C#-Syntax Q1",
-             "Options": [
-                 {
-                     "OptionId":1,
-                     "Content": "C#-Syntax- q1o1",
-                     "IsCorrect": true
-                 },
-                 {
-                    "OptionId":2,
-                    "Content": "C#-Syntax- q1o2",
-                    "IsCorrect": false
-
-                 },
-                 {
-                    "OptionId":3,
-                    "Content": "C#-Syntax- q1o3",
-                    "IsCorrect": false
-                 },
-                 {
-                    "OptionId":4,
-                    "Content": "C#-Syntax- q1o4",
-                    "IsCorrect": false
-                 },
-        {
-             "QuestionId": 2,
-             "ProblemStatement": "C#-Syntax Q2",
-             "Options": [
-                {
-                    "OptionId":1,
-                    "Content": "C#-Syntax- q2o1",
-                    "IsCorrect": false
-                },
-                {
-                   "OptionId":2,
-                   "Content": "C#-Syntax- q2o2",
-                   "IsCorrect": true
-               },
-                {
-                   "OptionId":3,
-                   "Content": "C#-Syntax- q2o3",
-                   "IsCorrect": false
-                },
-                {
-                   "OptionId":4,
-                   "Content": "C#-Syntax- q2o4",
-                   "IsCorrect": false
-                }
-             ]
-         },
-         {
-            "QuestionId": 3,
-            "ProblemStatement": "C#-DataTypes Q3",
-            "Options": [
-               {
-                   "OptionId":1,
-                   "Content": "C#-Syntax- q3o1",
-                   "IsCorrect": false
-               },
-               {
-                  "OptionId":2,
-                  "Content": "C#-Syntax- q3o2",
-                  "IsCorrect": true
-              },
-               {
-                  "OptionId":3,
-                  "Content": "C#-Syntax- q3o3",
-                  "IsCorrect": false
-               },
-               {
-                  "OptionId":4,
-                  "Content": "C#-Syntax- q3o4",
-                  "IsCorrect": false
-               }
             ]
         }
-
-     ]
-}
-]
-}
-
-]
-}
-
-
-
-
-
-
-]
+    ]
 }

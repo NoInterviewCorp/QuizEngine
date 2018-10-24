@@ -23,6 +23,7 @@ export class DisplayTechnologiesComponent implements OnInit {
   showTechnologies() {
     this.http.get('http://localhost:3000/Technology').subscribe((res: any) => {
       this.technology = res;
+      console.log(this.technology);
       // this.topics = this.technology[0].Topics;
     });
 
@@ -40,7 +41,7 @@ export class DisplayTechnologiesComponent implements OnInit {
     this.topics = technology.Topics;
     this.technologySelected = technology;
     // technology.Topics.forEach(topic=>this.topics.push(topic));
-    console.log(this.topics);
+    // console.log(this.technologySelected);
     this.isTechSelected = true;
   }
 
