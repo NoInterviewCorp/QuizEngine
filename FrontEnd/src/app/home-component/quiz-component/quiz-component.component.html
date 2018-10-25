@@ -20,7 +20,7 @@
 
 <div *ngIf="counter>=1" class="question">
 
-<h4>Q{{currentQuestion?.QuestionId}} {{currentQuestion?.ProblemStatement}}</h4>
+<h4>{{currentQuestion?.QuestionId}} {{currentQuestion?.ProblemStatement}}</h4>
 <mat-radio-group class="radio-group" [(ngModel)]="selectedOption">
   <mat-radio-button class="radio-button" *ngFor="let o of currentQuestion?.Options">
     {{o.Content}}
