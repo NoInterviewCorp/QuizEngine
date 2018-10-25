@@ -13,6 +13,7 @@ export class DisplayTechnologiesComponent implements OnInit {
   technology = [ ];
   topics=[];
   technologySelected :Technology;
+  showTechButton = true;
   isTechSelected = false;
   //tech : any;
   areAllLocked = true;
@@ -24,6 +25,7 @@ export class DisplayTechnologiesComponent implements OnInit {
     this.http.get('http://localhost:3000/Technology').subscribe((res: any) => {
       this.technology = res;
       console.log(this.technology);
+      this.showTechButton=false;
       // this.topics = this.technology[0].Topics;
     });
 
