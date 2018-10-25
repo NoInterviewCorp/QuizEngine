@@ -1,28 +1,32 @@
+<app-header-component>
+</app-header-component>
+
 <div>
 
 <div class = "button-flex">
 <button mat-raised-button color="primary" *ngIf="showQuesButton" (click)="showQuestions()">Show Questions</button><br><br>
 </div>
 
-<div *ngIf="showTimer" class="badge">Time: {{counter}}</div>
+<div *ngIf="showTimer" class="badge">Time Left: {{counter}}</div>
 
 <div *ngIf="showProgressBar">
 <section class="progressbar-section">
-  <mat-progress-bar mode="determinate"
-      class="progressbar-margin"
-      [value]="value">
-  </mat-progress-bar>
+<mat-progress-bar mode="determinate"
+    class="progressbar-margin"
+    [value]="value">
+</mat-progress-bar>
 </section> 
 </div>
 
 <div *ngIf="counter>=1" class="question">
-  <h4>{{currentQuestion?.ProblemStatement}}</h4>
-  <mat-radio-group class="radio-group" [(ngModel)]="selectedOption">
-    <mat-radio-button class="radio-button" *ngFor="let o of currentQuestion?.Options">
-      {{o.Content}}
-    </mat-radio-button>
-  </mat-radio-group>
-  <p class="example-selected-value">{{selectedOption}}</p>
+
+<h4>Q{{currentQuestion?.QuestionId}} {{currentQuestion?.ProblemStatement}}</h4>
+<mat-radio-group class="radio-group" [(ngModel)]="selectedOption">
+  <mat-radio-button class="radio-button" *ngFor="let o of currentQuestion?.Options">
+    {{o.Content}}
+  </mat-radio-button>
+</mat-radio-group>
+<p class="example-selected-value">{{selectedOption}}</p>
 </div>
 <div class="button-flex">
 <button mat-raised-button color="primary" *ngIf="showNextButton" (click)="nextQuestion()">Next</button>
