@@ -38,16 +38,13 @@ export class QuizComponentComponent implements OnInit {
   }
 
   showQuestions() {
-  this.showTimer = true;
+    this.showTimer = true;
     this.showProgressBar = true;
     console.log('called showQuestions');
-
-
-
     this.questions = this.quiz_service.getQuestions();
     this.showNextButton = true;
     this.showQuesButton = false;
-    this.questionCounter=0;
+    this.questionCounter = 0;
     this.currentQuestion = this.questions[this.questionCounter];
     this.shouldDisplayQuestions = true;
     this.totalQues = this.questions.length;

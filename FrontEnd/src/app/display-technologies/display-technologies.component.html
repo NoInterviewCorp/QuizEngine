@@ -1,20 +1,20 @@
 <app-header-component>
 </app-header-component>
 <div class="button-flex">
-  <button mat-raised-button color="primary" (click)="showTechnologies()">Show Technologies</button>
+<button mat-raised-button color="primary" (click)="showTechnologies()">Show Technologies</button>
 </div>
 <div class="flex-container" *ngIf="!isTechSelected">
-  <div class="card" *ngFor="let tech of technology">
-    <a [routerLink]="" (click)="exploreTopics(tech)">
-      <app-card [name]="tech.Name" [isLocked]="areAllLocked"></app-card>
-    </a>
-  </div>
+<div class="card" *ngFor="let tech of technology">
+  <a [routerLink]="" (click)="exploreTopics(tech)">
+    <app-card [name]="tech.Name" [isLocked]="areAllLocked"></app-card>
+  </a>
+</div>
 </div>
 <div class="flex-container" *ngIf="isTechSelected">
-  <div class="card" *ngFor="let topic of topics">
-    <a>
-      <app-topic [name]="topic.Name" [isLocked]="areAllLocked" [tech]="technologySelected" ></app-topic>
-    </a>
-  </div>
+<div class="card" *ngFor="let topic of topics">
+  <a>
+    <app-topic [name]="topic.Name" [isLocked]="areAllLocked" [tech]="technologySelected" ></app-topic>
+  </a>
+</div>
 </div>
 <button mat-raised-button color="primary" *ngIf="isTechSelected" (click)="toggle()">Back</button>
