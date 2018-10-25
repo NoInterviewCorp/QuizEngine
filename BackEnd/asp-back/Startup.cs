@@ -35,7 +35,8 @@ namespace asp_back {
                     .AllowCredentials ()
                     .WithOrigins ("http://localhost:4200");
             }));
-            services.AddSignalR ();
+            services.AddSignalR ()
+                .AddMessagePackProtocol();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });

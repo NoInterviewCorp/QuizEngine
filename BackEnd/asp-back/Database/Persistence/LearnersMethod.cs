@@ -83,7 +83,7 @@ namespace Learners.Persistence
             var level = context.Questions.FirstOrDefault(t=>t.QuestionId==QuestionId);
             return (int)level.BloomLevel;
         }
-        public int EvaluateBloomLevel(string QuestionId,string OptionId)
+        public int EvaluateAnswer(string QuestionId,string OptionId)
         {
             if(CheckOption(OptionId))
             {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import * as signalR from '@aspnet/signalr';
+import { MessagePackHubProtocol } from '@aspnet/signalr-protocol-msgpack';  
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,6 +19,7 @@ export class AppComponent {
 
     const connection = new signalR.HubConnectionBuilder()
       .withUrl('https://localhost:5001/test')
+      .withHubProtocol(new MessagePackHubProtocol())
       .build();
     connection.start().then(() => console.log('connection established')).catch((err) => console.log('Error::: ', err));
     connection.on('messageReceived', (username: string, message: string) => {

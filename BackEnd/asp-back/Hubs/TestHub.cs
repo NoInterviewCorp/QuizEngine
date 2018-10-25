@@ -67,6 +67,11 @@ namespace asp_back.hubs
             AttemptedEarlier = methods.CheckQuiz(tech,username);
             await Clients.Caller.SendAsync("Got the Response",AttemptedEarlier);
         }
+        public async Task EvaluateAnswer(string QuestionId,string OptionId)
+        {
+            temp.TempScore +=methods.EvaluateAnswer(QuestionId,OptionId);
+            await Clients.Caller.SendAsync("Answer Evaluated");
+        }
         public override async Task OnConnectedAsync()
         {
             await base.OnConnectedAsync();

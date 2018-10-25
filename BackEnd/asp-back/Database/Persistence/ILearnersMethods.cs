@@ -12,5 +12,9 @@ namespace Learners.Persistence
         void OnStart(TemporaryData temp);
         void OnFinish(UserData data);
         bool CheckQuiz(string tech,string username);
+        void AddResult(TemporaryData temporary);
+        int CheckBloomLevelOfTopic(int score);
+        int EvaluateAnswer(string QuestionId, string OptionId);
+        int BloomLevel(string QuestionId);
     }
 }
