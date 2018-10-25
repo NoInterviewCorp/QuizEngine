@@ -21,37 +21,39 @@ import { DisplayTechnologiesComponent } from './display-technologies/display-tec
 import {MatCardModule} from '@angular/material/card';
 import { CardComponent } from './display-technologies/card/card.component';
 import { TopicComponent } from './display-technologies/topic/topic.component';
+import { GrowlModule } from 'primeng/primeng';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponentComponent,
-    HeaderComponentComponent,
-    QuizComponentComponent,
-    ResultComponent,
-    DisplayTechnologiesComponent,
-    CardComponent,
-    TopicComponent
-    
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    MatToolbarModule,
-    MatGridListModule,
-    MatDividerModule,
-    BrowserAnimationsModule,
-    MatRadioModule,
-    MatButtonModule,
-    CountdownModule,
-    MatProgressBarModule,
-    MatDividerModule,
-    ChartsModule,
-    MatCardModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+declarations: [
+  AppComponent,
+  HomeComponentComponent,
+  HeaderComponentComponent,
+  QuizComponentComponent,
+  ResultComponent,
+  DisplayTechnologiesComponent,
+  CardComponent,
+  TopicComponent
+  
+],
+imports: [
+  BrowserModule,
+  AppRoutingModule,
+  FormsModule,
+  HttpClientModule,
+  MatToolbarModule,
+  MatGridListModule,
+  MatDividerModule,
+  BrowserAnimationsModule,
+  MatRadioModule,
+  MatButtonModule,
+  CountdownModule,
+  MatProgressBarModule,
+  MatDividerModule,
+  ChartsModule,
+  MatCardModule,
+  GrowlModule
+],
+providers: [],
+bootstrap: [AppComponent]
 })
 export class AppModule { }
