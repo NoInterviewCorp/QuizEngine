@@ -12,3 +12,17 @@
 /home/cgi/Main/SignalR/BackEnd/asp-back/obj/Debug/netcoreapp2.1/asp-back.RazorTargetAssemblyInfo.cache
 /home/cgi/Main/SignalR/BackEnd/asp-back/obj/Debug/netcoreapp2.1/asp-back.dll
 /home/cgi/Main/SignalR/BackEnd/asp-back/obj/Debug/netcoreapp2.1/asp-back.pdb
+D:\Workspace\BackEnd\asp-back\bin\Debug\netcoreapp2.1\asp-back.deps.json
+D:\Workspace\BackEnd\asp-back\bin\Debug\netcoreapp2.1\asp-back.runtimeconfig.json
+D:\Workspace\BackEnd\asp-back\bin\Debug\netcoreapp2.1\asp-back.runtimeconfig.dev.json
+D:\Workspace\BackEnd\asp-back\bin\Debug\netcoreapp2.1\asp-back.dll
+D:\Workspace\BackEnd\asp-back\bin\Debug\netcoreapp2.1\asp-back.pdb
+D:\Workspace\BackEnd\asp-back\obj\Debug\netcoreapp2.1\asp-back.csprojAssemblyReference.cache
+D:\Workspace\BackEnd\asp-back\obj\Debug\netcoreapp2.1\asp-back.csproj.CoreCompileInputs.cache
+D:\Workspace\BackEnd\asp-back\obj\Debug\netcoreapp2.1\asp-back.RazorAssemblyInfo.cache
+D:\Workspace\BackEnd\asp-back\obj\Debug\netcoreapp2.1\asp-back.RazorAssemblyInfo.cs
+D:\Workspace\BackEnd\asp-back\obj\Debug\netcoreapp2.1\asp-back.AssemblyInfoInputs.cache
+D:\Workspace\BackEnd\asp-back\obj\Debug\netcoreapp2.1\asp-back.AssemblyInfo.cs
+D:\Workspace\BackEnd\asp-back\obj\Debug\netcoreapp2.1\asp-back.RazorTargetAssemblyInfo.cache
+D:\Workspace\BackEnd\asp-back\obj\Debug\netcoreapp2.1\asp-back.dll
+D:\Workspace\BackEnd\asp-back\obj\Debug\netcoreapp2.1\asp-back.pdb
