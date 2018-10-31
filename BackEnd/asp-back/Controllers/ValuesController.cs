@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Learners.Persistence;
 using Microsoft.AspNetCore.Mvc;
 
 namespace asp_back.Controllers
@@ -10,6 +11,11 @@ namespace asp_back.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly ILearnersMethods methods;
+        public ValuesController(ILearnersMethods _methods)
+        {
+            methods=_methods;
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
