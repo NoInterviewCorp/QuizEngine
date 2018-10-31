@@ -5,13 +5,11 @@ WORKDIR /app
 COPY *.csproj ./
 RUN dotnet restore
 RUN dotnet ef migrations add data
-
+RUN dotnet ef database update
 # Copy everything else and build
 COPY . ./
 RUN dotnet publish -c Release -o out
 WORKDIR /app/out
-RUN dotnet ef database update
-
 # Build runtime image
 FROM microsoft/dotnet:aspnetcore-runtime
 WORKDIR /app
