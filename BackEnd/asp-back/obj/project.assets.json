@@ -11685,11 +11685,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\Workspace\\BackEnd\\asp-back\\asp-back.csproj",
+      "projectUniqueName": "D:\\Workspace\\BackEnd\\asp-back\\asp-back.csproj",
       "projectName": "asp-back",
-      "projectPath": "d:\\Workspace\\BackEnd\\asp-back\\asp-back.csproj",
+      "projectPath": "D:\\Workspace\\BackEnd\\asp-back\\asp-back.csproj",
       "packagesPath": "C:\\Users\\al-quaeda\\.nuget\\packages\\",
-      "outputPath": "d:\\Workspace\\BackEnd\\asp-back\\obj\\",
+      "outputPath": "D:\\Workspace\\BackEnd\\asp-back\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
