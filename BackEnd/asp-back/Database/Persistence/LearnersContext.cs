@@ -14,7 +14,7 @@ namespace Learners.Persistence {
         public DbSet<QuizData> QuizDatas { get; set; }
         public DbSet<TemporaryData> Temporaries { get; set; }
         protected override void OnConfiguring (DbContextOptionsBuilder optionsBuilder) {
-            optionsBuilder.UseSqlServer (@"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer (@"Server=localhost;Database=master;Trusted_Connection=False;MultipleActiveResultSets=true;User Id=sa;Password=AlquidA@9826;");
         }
         protected override void OnModelCreating (ModelBuilder modelBuilder) {
             modelBuilder.Entity<Technology> ().HasMany (tech => tech.Topics).WithOne ().HasForeignKey (topic => topic.TechnologyId);
