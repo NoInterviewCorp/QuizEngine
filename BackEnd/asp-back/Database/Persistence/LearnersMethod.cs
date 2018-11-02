@@ -7,8 +7,8 @@ namespace Learners.Persistence
 {
     public class LearnersMethod : ILearnersMethods
     {
-        private readonly LearnersContext context;
-        LearnersMethod(LearnersContext _context)
+        public LearnersContext context;
+        public LearnersMethod(LearnersContext _context)
         {
             this.context = _context;
         }

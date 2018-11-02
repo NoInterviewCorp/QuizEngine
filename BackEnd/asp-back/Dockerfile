@@ -4,8 +4,11 @@ WORKDIR /app
 # Copy csproj and restore as distinct layers
 COPY *.csproj ./
 RUN dotnet restore
+RUN dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+RUN dotnet build
+RUN dotnet ef -v
 RUN dotnet ef migrations add data
-RUN dotnet ef database update
+#RUN dotnet ef database update
 # Copy everything else and build
 COPY . ./
 RUN dotnet publish -c Release -o out

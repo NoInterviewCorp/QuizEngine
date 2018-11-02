@@ -18,8 +18,7 @@ export class AppComponent {
     const username = new Date().getTime();
 
     const connection = new signalR.HubConnectionBuilder()
-      .withUrl('https://localhost:5001/test')
-      .withHubProtocol(new MessagePackHubProtocol())
+      .withUrl('http://localhost:5000/test')
       .build();
     connection.start().then(() => console.log('connection established')).catch((err) => console.log('Error::: ', err));
     connection.on('messageReceived', (username: string, message: string) => {
