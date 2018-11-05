@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -26,15 +27,20 @@ namespace asp_back {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices (IServiceCollection services) {
             services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_1);
-            services.AddDbContext<LearnersContext> ();
             services.AddScoped<ILearnersMethods, LearnersMethod> ();
+            var connstring = Environment.GetEnvironmentVariable("SQLSERVER_HOST") ?? "localhost";
             services.AddCors (o => o.AddPolicy ("CorsPolicy", builder => {
                 builder
                     .AllowAnyMethod ()
                     .AllowAnyHeader ()
                     .AllowCredentials ()
-                    .WithOrigins ("http://localhost:4200");
+                    .AllowAnyOrigin();
             }));
+            services.AddDbContext<LearnersContext>();
+            // services.AddDbContext<LearnersContext>(options =>
+            // {
+            //     options.UseSqlServer(connstring);
+            // });
             services.AddSignalR ();
             services.AddSwaggerGen (c => {
                 c.SwaggerDoc ("v1", new Info { Title = "My API", Version = "v1" });
@@ -52,7 +58,7 @@ namespace asp_back {
             app.UseSignalR (routes => {
                 routes.MapHub<TestHub> ("/test");
             });
-            app.UseHttpsRedirection ();
+            //app.UseHttpsRedirection ();
             app.UseSwagger ();
             app.UseSwaggerUI (c => {
                 c.SwaggerEndpoint ("/swagger/v1/swagger.json", "Swagger Doc");
