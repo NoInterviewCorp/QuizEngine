@@ -1,5 +1,5 @@
 language: csharp
-solution: Evaluation_Backend
+solution: Evaluation_Backend  
 notifications:
   email:
     on_success: always

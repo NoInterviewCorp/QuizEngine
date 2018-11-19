@@ -13,7 +13,7 @@ namespace asp_back.hubs {
         // public TestHub (ITestMethods _methods) {
         //     this.methods = _methods;
         // }
-        public async Task newMessage (string username, string value) {
+        public async Task newMessage (string username, string value) {  
             await Clients.All.SendAsync ("messageReceived", username, value);
         }
         // public async Task GetAllTechnoligies () {
