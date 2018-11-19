@@ -9,5 +9,5 @@ mono: none
 dotnet: 2.1
 script:
   - cd BackEnd
-  - cd cd Evaluation_BackEnd
+  - cd Evaluation_BackEnd
   - dotnet restore
