@@ -1,3 +1,4 @@
+<<<<<<< HEAD:BackEnd/Evaluation_BackEnd/Properties/launchSettings.json
 ﻿{
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "iisSettings": {
@@ -27,4 +28,35 @@
       }
     }
   }
+=======
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false, 
+    "anonymousAuthentication": true, 
+    "iisExpress": {
+      "applicationUrl": "http://localhost:57468",
+      "sslPort": 44368
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "api/values",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "asp_back": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "api/values",
+      "applicationUrl": "https://0.0.0.0:5001;http://0.0.0.0:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+>>>>>>> 33fedd07ef190714f6fab3f013fdc4aa0b7bb39e:BackEnd/asp-back/Properties/launchSettings.json
 }
