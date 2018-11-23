@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using asp_back.hubs;
-using Learners.Models;
-using Learners.Persistence;
+using Evaluation_BackEnd.Models;
+using Evaluation_BackEnd.Persistence;
 using Learners.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
-using Neo4jClient;
-using Newtonsoft.Json;
-namespace asp_back.Controllers {
+namespace asp_back.Controllers
+{
     [Route ("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase {

@@ -1,21 +1,10 @@
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Newtonsoft.Json;
-namespace Learners.Models
-{
-    public class LearningPlan
-    {
-        // public string UserName { get; set; }
-        public string LearningPlanId { get; set; }
-        public string Name { get; set; }
-        // public List<Topic> Topics { get; set; }
-        public bool HasPublished { get; set; }
-        // foreign key to technology
-        // public string TechnologyId { get; set; }
-        // [JsonIgnore]
-        // public Technology Technology { get; set; }
 
-
+namespace Evaluation_BackEnd.Models {
+    public class LearningPlan {
+        public int PlanId { get; set; }
+        public string PlanName { get; set; }
+        public List<string> Domain { get; set; }
+        public List<Resource> Resources { get; set; }
     }
 }

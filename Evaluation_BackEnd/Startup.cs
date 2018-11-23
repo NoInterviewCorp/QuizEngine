@@ -1,23 +1,15 @@
-﻿﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using asp_back.hubs;
-using Learners.Models;
-using Learners.Persistence;
+﻿﻿using asp_back.hubs;
+using Evaluation_BackEnd.Persistence;
 using Learners.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.WebSockets;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace asp_back {
+namespace asp_back
+{
     public partial class Startup {
 
         public Startup (IConfiguration configuration) {
@@ -29,7 +21,7 @@ namespace asp_back {
         public void ConfigureServices (IServiceCollection services) {
             services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_1);
             // services.AddDbContext<LearnersContext> ();
-            // services.AddScoped<ILearnersMethods, LearnersMethod> ();
+            services.AddScoped<ITestMethods, LearnersMethods> ();
             services.AddCors (o => o.AddPolicy ("CorsPolicy", builder => {
                 builder
                     .AllowAnyMethod ()
@@ -38,6 +30,7 @@ namespace asp_back {
                     .WithOrigins ("http://localhost:4200");
             }));
             services.AddSingleton<GraphDbConnection> ();
+            services.AddSingleton<QueueHandler>();
             services.AddSignalR ();
             services.AddSwaggerGen (c => {
                 c.SwaggerDoc ("v1", new Info { Title = "My API", Version = "v1" });

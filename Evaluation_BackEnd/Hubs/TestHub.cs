@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Learners.Models;
-using Learners.Persistence;
+using Evaluation_BackEnd.Models;
+using Evaluation_BackEnd.Persistence;
+using Learners.Services;
 using Microsoft.AspNetCore.SignalR;
 
 namespace asp_back.hubs {
@@ -10,10 +11,11 @@ namespace asp_back.hubs {
         private ITestMethods methods;
         private TemporaryData temp;
         private List<string> concepts;
-        // public TestHub (ITestMethods _methods) {
-        //     this.methods = _methods;
-        // }
-        public async Task newMessage (string username, string value) {  
+        private static Dictionary<string,List<TemporaryData>> data;
+        public TestHub (ITestMethods _methods) {
+            this.methods = _methods;
+        }
+        public async Task newMessage (string username, string value) {
             await Clients.All.SendAsync ("messageReceived", username, value);
         }
         // public async Task GetAllTechnoligies () {
@@ -33,8 +35,7 @@ namespace asp_back.hubs {
         // }
         public async Task OnStart (string username, string tech) {
             temp = new TemporaryData (tech);
-            methods.OnStart (temp, username);
-            // concepts = methods.GetConceptsByTech (tech);
+            methods.OnStart (temp, username, tech);
             await Clients.Caller.SendAsync ("Temporary Object Created");
         }
         public async Task OnFinish () {

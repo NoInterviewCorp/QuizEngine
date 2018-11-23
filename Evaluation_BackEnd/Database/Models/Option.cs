@@ -1,18 +1,6 @@
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Newtonsoft.Json;
-namespace Learners.Models
-{
-    public class Option
-    {
-        [Key]
-        public string OptionId { get; set; }
-        [Required]
+namespace Evaluation_BackEnd.Models {
+    public class Option {
         public string Content { get; set; }
         public bool IsCorrect { get; set; }
-        public string QuestionId { get; set; }
-        [JsonIgnore]
-        public Question Question { get; set; }
     }
 }

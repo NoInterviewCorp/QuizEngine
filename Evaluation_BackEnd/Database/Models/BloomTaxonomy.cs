@@ -1,7 +1,5 @@
-namespace Learners.Models
-{
-    public enum BloomTaxonomy : byte
-    {
+namespace Evaluation_BackEnd.Models {
+    public enum BloomTaxonomy : byte {
         Knowledge = 1,
         Comprehension,
         Application,

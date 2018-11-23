@@ -1,18 +1,15 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-namespace Learners.Models{
-    public class Concept{
-        [Key]
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
+using MongoDB.Driver.Core;
+
+namespace Evaluation_BackEnd.Models {
+    public class Concept {
         public string ConceptId { get; set; }
-        [Required]
         public string Name { get; set; }
-        // foreign key to topic
-        // public List<ConceptTechnology> ConceptTechnologies { get; set;}
-        // foreign key to question
-        // public List<ConceptQuestion> ConceptQuestions { get; set; }
-        // foreign key to resources
-        // public List<ResourceConcept> ResourceConcepts { get; set; }
 
     }
 }
