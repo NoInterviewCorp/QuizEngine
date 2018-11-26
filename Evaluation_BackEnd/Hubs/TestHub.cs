@@ -33,30 +33,33 @@ namespace asp_back.hubs {
         //     var topics = methods.GetAllTopics (tech);
         //     await Clients.Caller.SendAsync ("GotAllTopics", topics);
         // }
-        public async Task OnStart (string username, string tech) {
-            temp = new TemporaryData (tech);
+        public async Task OnStart (string username, string tech,List<string> concepts) {
+            temp = new TemporaryData (tech,concepts);
             methods.OnStart (temp, username, tech);
             await Clients.Caller.SendAsync ("Temporary Object Created");
         }
         public async Task OnFinish () {
             await Clients.Caller.SendAsync ("Data Seeded");
         }
-        public async Task AttemptedQuizEarlier (string tech, string username) {
+        public async Task AttemptedQuizEarlier (string tech, string username) 
+        {
             bool AttemptedEarlier = false;
             AttemptedEarlier = methods.CheckQuiz (tech, username);
             await Clients.Caller.SendAsync ("Got the Response", AttemptedEarlier);
         }
-        public async Task EvaluateAnswer (string QuestionId, string OptionId) {
-            temp.TempScore += methods.EvaluateAnswer (QuestionId, OptionId);
+        public async Task EvaluateAnswer (string QuestionId, string OptionId) 
+        {
             await Clients.Caller.SendAsync ("Answer Evaluated");
         }
 
-        public override async Task OnConnectedAsync () {
+        public override async Task OnConnectedAsync () 
+        {
 
             await base.OnConnectedAsync ();
         }
 
-        public override async Task OnDisconnectedAsync (Exception exception) {
+        public override async Task OnDisconnectedAsync (Exception exception) 
+        {
             await base.OnDisconnectedAsync (exception);
         }
     }

@@ -8,7 +8,6 @@ using MongoDB.Driver.Core;
 
 namespace Evaluation_BackEnd.Models {
     public class Concept {
-        public string ConceptId { get; set; }
         public string Name { get; set; }
 
     }

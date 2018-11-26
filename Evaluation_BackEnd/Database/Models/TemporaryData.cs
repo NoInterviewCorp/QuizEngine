@@ -5,17 +5,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Evaluation_BackEnd.Models {
     public class TemporaryData {
-        [Key, DatabaseGenerated (DatabaseGeneratedOption.None)]
         public string TechName { get; set; }
         public BloomTaxonomy Blooms { get; set; }
         public string AttemptedOn { get; set; }
-        public int TempScore { get; set; }
         public bool IsCompleted { get; set; }
-        public TemporaryData (string tech) {
+        public List<AttemptedConcept> ConceptsAttempted {get; set;}
+        public TemporaryData (string tech,List<string> concepts) 
+        {
             TechName = tech;
+            foreach(var concept in concepts)
+            {
+                ConceptsAttempted.Add(new AttemptedConcept(concept));
+            }
             IsCompleted = false;
             AttemptedOn = DateTime.Today.ToString ("dd/MM/yyyy") + " " + DateTime.Now.ToString ("HH:mm:ss");
-            TempScore = 0;
             Blooms = (BloomTaxonomy) (1);
         }
     }

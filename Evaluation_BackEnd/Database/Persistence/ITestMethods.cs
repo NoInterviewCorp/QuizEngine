@@ -9,11 +9,11 @@ namespace Evaluation_BackEnd.Persistence {
         // List<Question> GetAllQuestions(string technology,string topic,BloomsLevel blooms);
         bool CheckOption (string optionId);
         void OnStart (TemporaryData temp, string username, string tech);
-        void OnFinish (User data);
+        void OnFinish (UserData data);
+        void GetQuestions(string username, string tech,List<string> concepts);
         bool CheckQuiz (string tech, string username);
         void AddResult (TemporaryData temporary);
         int CheckBloomLevelOfTopic (int score);
         int EvaluateAnswer (string QuestionId, string OptionId);
-        int BloomLevel (string QuestionId);
     }
 }
