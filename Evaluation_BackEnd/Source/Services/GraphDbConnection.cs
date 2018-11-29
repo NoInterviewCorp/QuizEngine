@@ -3,16 +3,16 @@ using Neo4jClient;
 
 namespace Learners.Services {
     public class GraphDbConnection : IDisposable {
-        public IGraphClient graph{ get; }
+        public IGraphClient graph { get; }
         public IBoltGraphClient boltGraphClient { get; set; }
         public GraphDbConnection () {
-            boltGraphClient = new BoltGraphClient(new Uri("localhost:7687"), "neo4j", "asdfgh12345");
+            boltGraphClient = new BoltGraphClient (new Uri ("localhost:7687"), "neo4j", "asdfgh12345");
             graph = new GraphClient (new Uri ("http://localhost:7474/db/data"), "neo4j", "asdfgh12345");
-            graph.Connect();
+            graph.Connect ();
         }
 
         public void Dispose () {
-            graph.Dispose();
+            graph.Dispose ();
         }
     }
 }

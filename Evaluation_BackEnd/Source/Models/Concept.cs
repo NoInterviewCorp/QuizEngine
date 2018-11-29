@@ -8,7 +8,7 @@ using MongoDB.Driver.Core;
 
 namespace Evaluation_BackEnd.Models {
     public class Concept {
-        public string Name { get; set;}
-        public BloomTaxonomy bloomtaxonomy ; 
+        public string Name { get; set; }
+        public BloomTaxonomy bloomtaxonomy;
     }
 }

@@ -34,7 +34,7 @@ namespace Evaluation_BackEnd.Persistence {
             throw new NotImplementedException ();
         }
 
-        public bool CheckQuiz (string tech, string username) {
+        public bool CountQuizAttempts (string tech, string username) {
             throw new NotImplementedException ();
         }
 
@@ -51,19 +51,19 @@ namespace Evaluation_BackEnd.Persistence {
         }
 
         public void GetQuestionsBatch (string username, string tech, List<string> concepts) {
-            var RequestData = new GetQuestionsBatchRequestModel (username, tech, concepts);
+            var RequestData = new QuestionsBatchRequestModel (username, tech, concepts);
             var serializeddata = RequestData.Serialize ();
             queuehandler.model.BasicPublish ("KnowledgeExchange", "Routing Key", null, serializeddata);
         }
 
         public void RequestConceptFromTechnology (string username, string tech) {
-            var temp = new GetConceptRequestModel (username, tech);
+            var temp = new ConceptRequestModel (username, tech);
             var serializeddata = temp.Serialize ();
             queuehandler.model.BasicPublish ("KnowledgeExchange", "Routing key", null, serializeddata);
         }
 
         public void GetQuestions (string username, string tech, string concept) {
-            var temporary = new GetQuestionsRequestModel (username, tech, concept);
+            var temporary = new QuestionsRequestModel (username, tech, concept);
             var serializeddata = temporary.Serialize ();
             queuehandler.model.BasicPublish ("KnowledgeExchange", "Routing key", null, serializeddata);
         }

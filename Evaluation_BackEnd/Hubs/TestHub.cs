@@ -7,14 +7,14 @@ using Learners.Services;
 using Microsoft.AspNetCore.SignalR;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-
+using Evaluation_BackEnd.StaticData;
 namespace asp_back.hubs {
     public class TestHub : Hub {
+        private static Dictionary<string,string> testUsers;
         private ITestMethods methods;
         private QueueHandler queuehandler;
         private TemporaryData temp;
-        private List<string> concepts;
-        private static Dictionary<string, List<TemporaryData>> data;
+        private static Dictionary<string, TemporaryData> data;
         public TestHub (ITestMethods _methods, QueueHandler _queuehandler) {
             this.methods = _methods;
             this.queuehandler = _queuehandler;
@@ -28,22 +28,11 @@ namespace asp_back.hubs {
         // }
         public async Task RequestConcepts (string username, string technology) {
             methods.RequestConceptFromTechnology (username, technology);
-            List<Question> questions = new List<Question> ();
-            var channel = queuehandler.model;
-            var consumer = new AsyncEventingBasicConsumer (channel);
-            consumer.Received += async (model, ea) => {
-                Console.WriteLine ("Recieved Concepts");
-                var body = ea.Body;
-                questions.Clear ();
-                questions.AddRange ((List<Question>) body.DeSerialize (typeof (Question)));
-                channel.BasicAck (ea.DeliveryTag, false);
-                Console.WriteLine ("- Delivery Tag <{0}>", ea.DeliveryTag);
-                await Task.Yield ();
-            };
-            channel.BasicConsume ("KnowledgeGraphToQuizEngine", false, consumer);
-            await Clients.Caller.SendAsync ("GotAllQuestions", questions);
+            await Clients.Caller.SendAsync ("Request For Concept Recieved");
         }
-        public async Task OnStart (string username, string tech, List<string> concepts) {
+        public async Task OnStart (string username, string tech, List<string> concepts) 
+        {
+            ConnectionData.userconnectiondata.Add(username,Context.ConnectionId);
             temp = new TemporaryData (tech, concepts);
             methods.OnStart (temp, username, tech);
             methods.GetQuestionsBatch (username, tech, concepts);
@@ -52,24 +41,27 @@ namespace asp_back.hubs {
         public async Task OnFinish () {
             await Clients.Caller.SendAsync ("Data Seeded");
         }
-        public async Task AttemptedQuizEarlier (string tech, string username) {
+        public async Task CountQuizAttempts (string tech, string username) {
             bool AttemptedEarlier = false;
-            AttemptedEarlier = methods.CheckQuiz (tech, username);
+            AttemptedEarlier = methods.CountQuizAttempts (tech, username);
             await Clients.Caller.SendAsync ("Got the Response", AttemptedEarlier);
         }
         public async Task EvaluateAnswer (string QuestionId, string OptionId) {
             await Clients.Caller.SendAsync ("Answer Evaluated");
         }
         public async Task GetQuestions (string username, string tech, string concept) {
-            methods.GetQuestionsBatch (username, tech, concepts);
+            methods.GetQuestions (username, tech, concept);
             await Clients.Caller.SendAsync ("Got Questions");
         }
-        public override async Task OnConnectedAsync () {
+        public override async Task OnConnectedAsync () 
+        {
             await base.OnConnectedAsync ();
         }
 
-        public override async Task OnDisconnectedAsync (Exception exception) {
+        public override async Task OnDisconnectedAsync (Exception exception) 
+        {
             await base.OnDisconnectedAsync (exception);
         }
+        
     }
 }
