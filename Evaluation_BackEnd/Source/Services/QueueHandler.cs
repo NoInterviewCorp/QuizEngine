@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using asp_back.hubs;
+using Evaluation_BackEnd.ContentWrapper;
 using Microsoft.AspNetCore.SignalR;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -28,12 +29,15 @@ namespace Learners.Services {
         public void Dispose () {
             connection.Close ();
         }
-        public async Task QuestionBatchResponseHandler () {
+        public void QuestionBatchResponseHandler () {
             var channel = connection.CreateModel ();
             var consumer = new AsyncEventingBasicConsumer (channel);
             consumer.Received += async (model, ea) => {
-                Console.WriteLine ("Recieved Questions");
+                Console.WriteLine ("<--------------------Recieved Questions--------------------->");
                 var body = ea.Body;
+                var data = (QuestionBatchResponse) body.DeSerialize (typeof (QuestionBatchResponse));
+                Console.WriteLine (data);
+                Console.WriteLine ("<------------------------------------------------------------>");
                 channel.BasicAck (ea.DeliveryTag, false);
                 var routingKey = ea.RoutingKey;
                 Console.WriteLine (" - Routing Key <{0}>", routingKey);
