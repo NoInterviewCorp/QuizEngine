@@ -1,0 +1,14 @@
+D:\Workspace\Evaluation_BackEnd\bin\Debug\netcoreapp2.1\Evaluation_BackEnd.deps.json
+D:\Workspace\Evaluation_BackEnd\bin\Debug\netcoreapp2.1\Evaluation_BackEnd.runtimeconfig.json
+D:\Workspace\Evaluation_BackEnd\bin\Debug\netcoreapp2.1\Evaluation_BackEnd.runtimeconfig.dev.json
+D:\Workspace\Evaluation_BackEnd\bin\Debug\netcoreapp2.1\Evaluation_BackEnd.dll
+D:\Workspace\Evaluation_BackEnd\bin\Debug\netcoreapp2.1\Evaluation_BackEnd.pdb
+D:\Workspace\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.csprojAssemblyReference.cache
+D:\Workspace\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.csproj.CoreCompileInputs.cache
+D:\Workspace\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.RazorAssemblyInfo.cache
+D:\Workspace\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.RazorAssemblyInfo.cs
+D:\Workspace\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.AssemblyInfoInputs.cache
+D:\Workspace\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.AssemblyInfo.cs
+D:\Workspace\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.RazorTargetAssemblyInfo.cache
+D:\Workspace\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.dll
+D:\Workspace\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.pdb

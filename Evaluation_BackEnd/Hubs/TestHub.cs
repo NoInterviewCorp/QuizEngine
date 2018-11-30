@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Evaluation_BackEnd.Models;
 using Evaluation_BackEnd.Persistence;
+using Evaluation_BackEnd.StaticData;
 using Learners.Services;
 using Microsoft.AspNetCore.SignalR;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using Evaluation_BackEnd.StaticData;
 namespace asp_back.hubs {
     public class TestHub : Hub {
-        private static Dictionary<string,string> testUsers;
+        private static Dictionary<string, string> testUsers;
         private ITestMethods methods;
         private QueueHandler queuehandler;
         private TemporaryData temp;
@@ -30,9 +30,7 @@ namespace asp_back.hubs {
             methods.RequestConceptFromTechnology (username, technology);
             await Clients.Caller.SendAsync ("Request For Concept Recieved");
         }
-        public async Task OnStart (string username, string tech, List<string> concepts) 
-        {
-            ConnectionData.userconnectiondata.Add(username,Context.ConnectionId);
+        public async Task OnStart (string username, string tech, List<string> concepts) {
             temp = new TemporaryData (tech, concepts);
             methods.OnStart (temp, username, tech);
             methods.GetQuestionsBatch (username, tech, concepts);
@@ -53,8 +51,10 @@ namespace asp_back.hubs {
             methods.GetQuestions (username, tech, concept);
             await Clients.Caller.SendAsync ("Got Questions");
         }
-        public override async Task OnConnectedAsync () 
-        {
+        public override async Task OnConnectedAsync () {
+            var httpContext = Context.GetHttpContext ();
+            var username = httpContext.Request.Query["username"].ToString ();
+            ConnectionData.userconnectiondata.Add (username, Context.ConnectionId);
             await base.OnConnectedAsync ();
         }
 
@@ -62,6 +62,6 @@ namespace asp_back.hubs {
         {
             await base.OnDisconnectedAsync (exception);
         }
-        
+
     }
 }

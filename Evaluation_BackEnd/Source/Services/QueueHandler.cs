@@ -42,10 +42,28 @@ namespace Learners.Services {
                 var routingKey = ea.RoutingKey;
                 Console.WriteLine (" - Routing Key <{0}>", routingKey);
                 Console.WriteLine ("- Delivery Tag <{0}>", ea.DeliveryTag);
+                // await hubContext.Clients.Client(ConnectionData.userconnectiondata(QuestionBatchResponse.username)).SendAsync("",Data);
                 await Task.Yield ();
             };
             channel.BasicConsume ("QuizEngine_KnowledgeGraph", false, consumer);
-            // await hubContext.Clients.Client
+        }
+        public void ConceptResponseHandler () {
+            var channel = connection.CreateModel ();
+            var consumer = new AsyncEventingBasicConsumer (channel);
+            consumer.Received += async (model, ea) => {
+                Console.WriteLine ("<--------------------Recieved Questions--------------------->");
+                var body = ea.Body;
+                var data = (ConceptResponse) body.DeSerialize (typeof (ConceptResponse));
+                Console.WriteLine (data);
+                Console.WriteLine ("<------------------------------------------------------------>");
+                channel.BasicAck (ea.DeliveryTag, false);
+                var routingKey = ea.RoutingKey;
+                Console.WriteLine (" - Routing Key <{0}>", routingKey);
+                Console.WriteLine ("- Delivery Tag <{0}>", ea.DeliveryTag);
+                // await hubContext.Clients.Client(ConnectionData.userconnectiondata(ConceptResponse.username)).SendAsync("",Data);
+                await Task.Yield ();
+            };
+            channel.BasicConsume ("QuizEngine_KnowledgeGraph", false, consumer);
         }
     }
 }
