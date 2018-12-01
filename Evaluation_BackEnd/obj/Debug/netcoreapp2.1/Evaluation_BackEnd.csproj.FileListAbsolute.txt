@@ -12,3 +12,17 @@ D:\Workspace\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.Assem
 D:\Workspace\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.RazorTargetAssemblyInfo.cache
 D:\Workspace\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.dll
 D:\Workspace\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.pdb
+C:\Users\Administrator\Documents\QuizEngine\Evaluation_BackEnd\bin\Debug\netcoreapp2.1\Evaluation_BackEnd.deps.json
+C:\Users\Administrator\Documents\QuizEngine\Evaluation_BackEnd\bin\Debug\netcoreapp2.1\Evaluation_BackEnd.runtimeconfig.json
+C:\Users\Administrator\Documents\QuizEngine\Evaluation_BackEnd\bin\Debug\netcoreapp2.1\Evaluation_BackEnd.runtimeconfig.dev.json
+C:\Users\Administrator\Documents\QuizEngine\Evaluation_BackEnd\bin\Debug\netcoreapp2.1\Evaluation_BackEnd.dll
+C:\Users\Administrator\Documents\QuizEngine\Evaluation_BackEnd\bin\Debug\netcoreapp2.1\Evaluation_BackEnd.pdb
+C:\Users\Administrator\Documents\QuizEngine\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.csprojAssemblyReference.cache
+C:\Users\Administrator\Documents\QuizEngine\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\QuizEngine\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.RazorAssemblyInfo.cache
+C:\Users\Administrator\Documents\QuizEngine\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.RazorAssemblyInfo.cs
+C:\Users\Administrator\Documents\QuizEngine\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.AssemblyInfoInputs.cache
+C:\Users\Administrator\Documents\QuizEngine\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.AssemblyInfo.cs
+C:\Users\Administrator\Documents\QuizEngine\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.RazorTargetAssemblyInfo.cache
+C:\Users\Administrator\Documents\QuizEngine\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.dll
+C:\Users\Administrator\Documents\QuizEngine\Evaluation_BackEnd\obj\Debug\netcoreapp2.1\Evaluation_BackEnd.pdb
