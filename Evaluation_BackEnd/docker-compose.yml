@@ -2,12 +2,13 @@ version: "3"
 services:
     web:
         build: .
-        ports:
-            - "8080:5000"
         links:
             - db
         environment:
             SQLSERVER_HOST: "Server=db;Database=MyDatabase;User=SA;Password=aLQUIDa@9826;"
+        labels:
+            - "SERVICE_5001_NAME=QuizEngine"
+            - "SERVICE_TAGS=QuizEngineTag"
     db:
         image: "microsoft/mssql-server-linux"
         ports:

@@ -50,7 +50,7 @@ namespace asp_back
                 routes.MapHub<TestHub> ("/test");
             });
 
-            app.UseHttpsRedirection ();
+            // app.UseHttpsRedirection ();
             app.UseSwagger ();
             app.UseSwaggerUI (c => {
                 c.SwaggerEndpoint ("/swagger/v1/swagger.json", "Swagger Doc");
