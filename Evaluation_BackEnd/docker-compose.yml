@@ -14,7 +14,7 @@ services:
     mongodb:
         image: mongo
         ports:
-            - "0.0.0.0:27017:27017"
+            - "0.0.0.0:27018:27017"
         volumes:
             - ${WEBAPP_STORAGE_HOME}/site:/data/db       
     # db:
