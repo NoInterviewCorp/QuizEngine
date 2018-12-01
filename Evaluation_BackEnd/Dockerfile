@@ -9,7 +9,7 @@ EXPOSE 5001
 # RUN dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 RUN ["dotnet","restore"]
 RUN ["dotnet","build"]
-RUN ["dotnet","run"]
+CMD ["dotnet","run"]
 # RUN dotnet ef -v
 # RUN dotnet ef migrations add data
 # RUN chmod +x ./docker_entrypoint.sh
