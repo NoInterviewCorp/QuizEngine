@@ -7,6 +7,7 @@ using Learners.Services;
 using Microsoft.EntityFrameworkCore;
 using Neo4j.Driver.V1;
 using RabbitMQ.Client;
+using Evaluation_BackEnd.StaticData;
 
 namespace Evaluation_BackEnd.Persistence {
     public class LearnersMethods : ITestMethods {
@@ -38,7 +39,9 @@ namespace Evaluation_BackEnd.Persistence {
             throw new NotImplementedException ();
         }
 
-        public int EvaluateAnswer (string QuestionId, string OptionId) {
+        public int EvaluateAnswer (string QuestionId, string OptionId) 
+        {
+            
             throw new NotImplementedException ();
         }
 
@@ -46,8 +49,9 @@ namespace Evaluation_BackEnd.Persistence {
             throw new NotImplementedException ();
         }
 
-        public void OnStart (TemporaryData temp, string username, string tech) {
-            throw new NotImplementedException ();
+        public void OnStart (TemporaryData temp, string username) 
+        {
+            TemporaryQuizData.data[username] = temp;
         }
 
         public void GetQuestionsBatch (string username, string tech, List<string> concepts) {

@@ -32,7 +32,7 @@ namespace asp_back.hubs {
         }
         public async Task OnStart (string username, string tech, List<string> concepts) {
             temp = new TemporaryData (tech, concepts);
-            methods.OnStart (temp, username, tech);
+            methods.OnStart (temp, username);
             methods.GetQuestionsBatch (username, tech, concepts);
             await Clients.Caller.SendAsync ("Temporary Object Created");
         }
@@ -45,16 +45,18 @@ namespace asp_back.hubs {
             await Clients.Caller.SendAsync ("Got the Response", AttemptedEarlier);
         }
         public async Task EvaluateAnswer (string QuestionId, string OptionId) {
-            await Clients.Caller.SendAsync ("Answer Evaluated");
+            methods.EvaluateAnswer(QuestionId,OptionId);
+            await Clients.Caller.SendAsync ("Evaluating Answer");
         }
         public async Task GetQuestions (string username, string tech, string concept) {
             methods.GetQuestions (username, tech, concept);
-            await Clients.Caller.SendAsync ("Got Questions");
+            await Clients.Caller.SendAsync ("Recieved Request for Questions");
         }
-        public override async Task OnConnectedAsync () {
-            var httpContext = Context.GetHttpContext ();
-            var username = httpContext.Request.Query["username"].ToString ();
-            ConnectionData.userconnectiondata.Add (username, Context.ConnectionId);
+        public override async Task OnConnectedAsync () 
+        {
+            // var httpContext = Context.GetHttpContext ();
+            // var username = httpContext.Request.Query["username"].ToString ();
+            // ConnectionData.userconnectiondata.Add (username, Context.ConnectionId);
             await base.OnConnectedAsync ();
         }
 
