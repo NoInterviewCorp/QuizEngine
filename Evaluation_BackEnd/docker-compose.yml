@@ -2,34 +2,14 @@ version: "3.5"
 services:
     web:
         build: .
-        links:
-            - mongodb
         ports:
             - 0.0.0.0:5001:5001
         networks: 
             - potentiometer-network
-        # environment:
-            # SQLSERVER_HOST: "Server=db;Database=MyDatabase;User=SA;Password=aLQUIDa@9826;"
         labels:
             - "SERVICE_5001_NAME=QuizEngine"
             - "SERVICE_TAGS=QuizEngineTag"
-    mongodb:
-        image: mongo
-        ports:
-            - "0.0.0.0:27018:27017"
-        volumes:
-            - ${WEBAPP_STORAGE_HOME}/site:/data/db   
-        networks: 
-            - potentiometer-network  
 networks:
     potentiometer-network:
         name: potentiometer-network
         external: true
-    
-    # db:
-    #     image: "microsoft/mssql-server-linux"
-    #     ports:
-    #         - "1433"
-    #     environment:
-    #         SA_PASSWORD: "aLQUIDa@9826"
-    #         ACCEPT_EULA: "Y"

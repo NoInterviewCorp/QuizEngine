@@ -29,7 +29,6 @@ namespace asp_back
                     .AllowCredentials ()
                     .WithOrigins ("http://localhost:4200");
             }));
-            services.AddSingleton<GraphDbConnection> ();
             services.AddSingleton<QueueHandler>();
             services.AddSignalR ();
             services.AddSwaggerGen (c => {

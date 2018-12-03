@@ -10,22 +10,14 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 namespace asp_back.hubs {
     public class TestHub : Hub {
-        private static Dictionary<string, string> testUsers;
         private ITestMethods methods;
-        private QueueHandler queuehandler;
         private TemporaryData temp;
-        private static Dictionary<string, TemporaryData> data;
         public TestHub (ITestMethods _methods) {
             this.methods = _methods;
-            // this.queuehandler = _queuehandler;
         }
         public async Task newMessage (string username, string value) {
             await Clients.All.SendAsync ("messageReceived", username, value);
         }
-        // public async Task GetAllTechnoligies () {
-        //     var tech = methods.GetAllTechnologies ();
-        //     await Clients.Caller.SendAsync ("GotAllTechnoligies", tech);
-        // }
         public async Task RequestConcepts (string username, string technology) {
             methods.RequestConceptFromTechnology (username, technology);
             await Clients.Caller.SendAsync ("Request For Concept Recieved");
@@ -54,9 +46,9 @@ namespace asp_back.hubs {
         }
         public override async Task OnConnectedAsync () 
         {
-            // var httpContext = Context.GetHttpContext ();
-            // var username = httpContext.Request.Query["username"].ToString ();
-            // ConnectionData.userconnectiondata.Add (username, Context.ConnectionId);
+            var httpContext = Context.GetHttpContext ();
+            var username = httpContext.Request.Query["username"].ToString ();
+            ConnectionData.userconnectiondata.Add (username, Context.ConnectionId);
             await base.OnConnectedAsync ();
         }
 

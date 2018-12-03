@@ -11,12 +11,10 @@ using RabbitMQ.Client;
 
 namespace Evaluation_BackEnd.Persistence {
     public class LearnersMethods : ITestMethods {
-        // public LearnersContext context;
-        // private static GraphDbConnection graphclient;
-        // private static QueueHandler queuehandler;
-        public LearnersMethods () {
+        private static QueueHandler queuehandler;
+        public LearnersMethods ( QueueHandler _queuehandler) {
             // graphclient = _graphclient;
-            // queuehandler = _queuehandler;
+            queuehandler = _queuehandler;
         }
 
         public void AddResult (TemporaryData temporary) {
@@ -65,19 +63,19 @@ namespace Evaluation_BackEnd.Persistence {
         public void GetQuestionsBatch (string username, string tech, List<string> concepts) {
             var RequestData = new QuestionsBatchRequest (username, tech, concepts);
             var serializeddata = RequestData.Serialize ();
-            // queuehandler.model.BasicPublish ("KnowledgeExchange", "Routing Key", null, serializeddata);
+            queuehandler.model.BasicPublish ("KnowledgeExchange", "Routing Key", null, serializeddata);
         }
 
         public void RequestConceptFromTechnology (string username, string tech) {
             var temp = new ConceptRequest (username, tech);
             var serializeddata = temp.Serialize ();
-            // queuehandler.model.BasicPublish ("KnowledgeExchange", "Routing key", null, serializeddata);
+            queuehandler.model.BasicPublish ("KnowledgeExchange", "Routing key", null, serializeddata);
         }
 
         public void GetQuestions (string username, string tech, string concept) {
             var temporary = new QuestionsRequest (username, tech, concept);
             var serializeddata = temporary.Serialize ();
-            // queuehandler.model.BasicPublish ("KnowledgeExchange", "Routing key", null, serializeddata);
+            queuehandler.model.BasicPublish ("KnowledgeExchange", "Routing key", null, serializeddata);
         }
     }
 }

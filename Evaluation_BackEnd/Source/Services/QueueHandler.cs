@@ -9,21 +9,21 @@ using Microsoft.AspNetCore.SignalR;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 namespace Learners.Services {
-    public class QueueHandler : IDisposable {
-        private List<string> Ids;
+    public class QueueHandler : IDisposable 
+    {
         private static ConnectionFactory factory;
         private static IConnection connection;
         public IModel model;
         private readonly IHubContext<TestHub> hubContext;
         private const string ExchangeNme = "KnowledgeExchange";
-        public QueueHandler () {
+        public QueueHandler (IHubContext<TestHub> _hubcontext) {
             factory = new ConnectionFactory {
-                HostName = "localhost",
-                UserName = "guest",
-                Password = "guest",
+                HostName = "rabbitmq",
+                UserName = "achausername",
+                Password = "strongpassword",
                 DispatchConsumersAsync = true
             };
-            // hubContext = _hubcontext;
+            hubContext = _hubcontext;
             connection = factory.CreateConnection ();
             model = connection.CreateModel ();
         }
@@ -38,9 +38,8 @@ namespace Learners.Services {
                 var body = ea.Body;
                 var data = (QuestionBatchResponse) body.DeSerialize (typeof (QuestionBatchResponse));
                 foreach (KeyValuePair<string, List<Question>> entry in data.questions) {
-                    if (TemporaryQuizData.data.ContainsKey (data.username))
-                    {
-                        TemporaryQuizData.data[data.username].QuestionsAttempted[entry.Key].AddRange(data.questions[entry.Key]);
+                    if (TemporaryQuizData.data.ContainsKey (data.username)) {
+                        TemporaryQuizData.data[data.username].QuestionsAttempted[entry.Key].AddRange (data.questions[entry.Key]);
                     }
                 }
                 Console.WriteLine (data);
