@@ -42,7 +42,7 @@ namespace Evaluation_BackEnd.Persistence {
         public void EvaluateAnswer (string username, string QuestionId, string OptionId) {
             var userdata = TemporaryQuizData.data[username];
             foreach (KeyValuePair<string, List<Question>> entry in userdata.QuestionsAttempted) {
-                var question = entry.Value.Find (id => id.Id == QuestionId);
+                var question = entry.Value.FirstOrDefault (id => id.Id == QuestionId);
                 if (question != null) {
                     if (question.CorrectOptionId == OptionId) {
                         TemporaryQuizData.data[username].ConceptsAttempted[entry.Key].QuestionAttemptedCorrect++;
