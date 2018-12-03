@@ -12,10 +12,10 @@ using RabbitMQ.Client;
 namespace Evaluation_BackEnd.Persistence {
     public class LearnersMethods : ITestMethods {
         // public LearnersContext context;
-        private static GraphDbConnection graphclient;
+        // private static GraphDbConnection graphclient;
         private static QueueHandler queuehandler;
-        public LearnersMethods (GraphDbConnection _graphclient, QueueHandler _queuehandler) {
-            graphclient = _graphclient;
+        public LearnersMethods ( QueueHandler _queuehandler) {
+            // graphclient = _graphclient;
             queuehandler = _queuehandler;
         }
 

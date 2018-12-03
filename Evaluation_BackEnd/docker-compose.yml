@@ -6,6 +6,8 @@ services:
             - mongodb
         ports:
             - 0.0.0.0:5001:5001
+        networks: 
+            - potentiometer-network
         # environment:
             # SQLSERVER_HOST: "Server=db;Database=MyDatabase;User=SA;Password=aLQUIDa@9826;"
         labels:
@@ -16,7 +18,14 @@ services:
         ports:
             - "0.0.0.0:27018:27017"
         volumes:
-            - ${WEBAPP_STORAGE_HOME}/site:/data/db       
+            - ${WEBAPP_STORAGE_HOME}/site:/data/db   
+        networks: 
+            - potentiometer-network  
+networks:
+    potentiometer-network:
+        name: potentiometer-network
+        external: true
+    
     # db:
     #     image: "microsoft/mssql-server-linux"
     #     ports:
