@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using asp_back.hubs;
 using Evaluation_BackEnd.ContentWrapper;
+using Evaluation_BackEnd.StaticData;
 using Microsoft.AspNetCore.SignalR;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -42,7 +43,7 @@ namespace Learners.Services {
                 var routingKey = ea.RoutingKey;
                 Console.WriteLine (" - Routing Key <{0}>", routingKey);
                 Console.WriteLine ("- Delivery Tag <{0}>", ea.DeliveryTag);
-                // await hubContext.Clients.Client(ConnectionData.userconnectiondata(QuestionBatchResponse.username)).SendAsync("",Data);
+                await hubContext.Clients.Client(ConnectionData.userconnectiondata[data.username]).SendAsync("",data.questions);
                 await Task.Yield ();
             };
             channel.BasicConsume ("QuizEngine_KnowledgeGraph", false, consumer);
@@ -60,7 +61,7 @@ namespace Learners.Services {
                 var routingKey = ea.RoutingKey;
                 Console.WriteLine (" - Routing Key <{0}>", routingKey);
                 Console.WriteLine ("- Delivery Tag <{0}>", ea.DeliveryTag);
-                // await hubContext.Clients.Client(ConnectionData.userconnectiondata(ConceptResponse.username)).SendAsync("",Data);
+                await hubContext.Clients.Client(ConnectionData.userconnectiondata[key: data.username]).SendAsync("",data.concepts);
                 await Task.Yield ();
             };
             channel.BasicConsume ("QuizEngine_KnowledgeGraph", false, consumer);
