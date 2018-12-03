@@ -17,6 +17,6 @@ namespace Evaluation_BackEnd.Persistence {
         void AddResult (TemporaryData temporary);
         int CheckBloomLevelOfTopic (int score);
         void RequestConceptFromTechnology (string username, string tech);
-        int EvaluateAnswer (string QuestionId, string OptionId);
+        void EvaluateAnswer (string username, string QuestionId, string OptionId);
     }
 }

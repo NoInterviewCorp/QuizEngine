@@ -44,8 +44,8 @@ namespace asp_back.hubs {
             AttemptedEarlier = methods.CountQuizAttempts (tech, username);
             await Clients.Caller.SendAsync ("Got the Response", AttemptedEarlier);
         }
-        public async Task EvaluateAnswer (string QuestionId, string OptionId) {
-            methods.EvaluateAnswer(QuestionId,OptionId);
+        public async Task EvaluateAnswer (string Username, string QuestionId, string OptionId) {
+            methods.EvaluateAnswer(Username, QuestionId,OptionId);
             await Clients.Caller.SendAsync ("Evaluating Answer");
         }
         public async Task GetQuestions (string username, string tech, string concept) {

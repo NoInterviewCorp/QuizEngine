@@ -5,12 +5,12 @@ namespace Evaluation_BackEnd.Models {
         public string ConceptName{get;set;}
         public int QuestionAttemptedCorrect { get; set; }
         public int TotalQuestionAttempted { get; set; }
-        public BloomTaxonomy bloomlevel { get; set; }
+        // public BloomTaxonomy bloomlevel { get; set; }
         public AttemptedConcept (string concept) {
             this.ConceptName = concept;
             QuestionAttemptedCorrect = 0;
             TotalQuestionAttempted = 0;
-            bloomlevel = (BloomTaxonomy) 1;
+            // bloomlevel = (BloomTaxonomy) 1;
         }
     }
 }

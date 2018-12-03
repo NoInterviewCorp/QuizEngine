@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Evaluation_BackEnd.Models;
 using Evaluation_BackEnd.RabbitMQModels;
+using Evaluation_BackEnd.StaticData;
 using Learners.Services;
 using Microsoft.EntityFrameworkCore;
 using Neo4j.Driver.V1;
 using RabbitMQ.Client;
-using Evaluation_BackEnd.StaticData;
 
 namespace Evaluation_BackEnd.Persistence {
     public class LearnersMethods : ITestMethods {
@@ -39,18 +39,26 @@ namespace Evaluation_BackEnd.Persistence {
             throw new NotImplementedException ();
         }
 
-        public int EvaluateAnswer (string QuestionId, string OptionId) 
-        {
-            
-            throw new NotImplementedException ();
+        public void EvaluateAnswer (string username, string QuestionId, string OptionId) {
+            var userdata = TemporaryQuizData.data[username];
+            foreach (KeyValuePair<string, List<Question>> entry in userdata.QuestionsAttempted) {
+                var question = entry.Value.Find (id => id.Id == QuestionId);
+                if (question != null) {
+                    if (question.CorrectOptionId == OptionId) {
+                        TemporaryQuizData.data[username].ConceptsAttempted[entry.Key].QuestionAttemptedCorrect++;
+                        TemporaryQuizData.data[username].ConceptsAttempted[entry.Key].TotalQuestionAttempted++;
+                    } else {
+                        TemporaryQuizData.data[username].ConceptsAttempted[entry.Key].TotalQuestionAttempted++;
+                    }
+                }
+            }
         }
 
         public void OnFinish (UserData data) {
             throw new NotImplementedException ();
         }
 
-        public void OnStart (TemporaryData temp, string username) 
-        {
+        public void OnStart (TemporaryData temp, string username) {
             TemporaryQuizData.data[username] = temp;
         }
 

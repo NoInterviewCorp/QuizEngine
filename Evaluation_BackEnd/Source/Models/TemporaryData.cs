@@ -12,7 +12,6 @@ namespace Evaluation_BackEnd.Models {
         public string AttemptedOn { get; set; }
         public bool IsCompleted { get; set; }
         public Dictionary<string, AttemptedConcept> ConceptsAttempted { get; set; }
-
         [BsonIgnore]
         public Dictionary<string, List<Question>> QuestionsAttempted;
         public TemporaryData (string tech, List<string> concepts) {

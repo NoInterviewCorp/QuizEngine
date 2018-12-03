@@ -31,7 +31,7 @@ namespace asp_back
             }));
             services.AddSingleton<GraphDbConnection> ();
             services.AddSingleton<QueueHandler>();
-            services.AddSignalR ().AddMessagePackProtocol();
+            services.AddSignalR ();
             services.AddSwaggerGen (c => {
                 c.SwaggerDoc ("v1", new Info { Title = "My API", Version = "v1" });
             });
