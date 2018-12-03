@@ -2,16 +2,25 @@ version: "3"
 services:
     web:
         build: .
-        ports:
-            - "8080:5000"
         links:
-            - db
-        environment:
-            SQLSERVER_HOST: "Server=db;Database=MyDatabase;User=SA;Password=aLQUIDa@9826;"
-    db:
-        image: "microsoft/mssql-server-linux"
+            - mongodb
         ports:
-            - "1433"
-        environment:
-            SA_PASSWORD: "aLQUIDa@9826"
-            ACCEPT_EULA: "Y"
+            - 0.0.0.0:5001:5001
+        # environment:
+            # SQLSERVER_HOST: "Server=db;Database=MyDatabase;User=SA;Password=aLQUIDa@9826;"
+        labels:
+            - "SERVICE_5001_NAME=QuizEngine"
+            - "SERVICE_TAGS=QuizEngineTag"
+    mongodb:
+        image: mongo
+        ports:
+            - "0.0.0.0:27018:27017"
+        volumes:
+            - ${WEBAPP_STORAGE_HOME}/site:/data/db       
+    # db:
+    #     image: "microsoft/mssql-server-linux"
+    #     ports:
+    #         - "1433"
+    #     environment:
+    #         SA_PASSWORD: "aLQUIDa@9826"
+    #         ACCEPT_EULA: "Y"
