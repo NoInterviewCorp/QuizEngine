@@ -15,9 +15,9 @@ namespace asp_back.hubs {
         private QueueHandler queuehandler;
         private TemporaryData temp;
         private static Dictionary<string, TemporaryData> data;
-        public TestHub (ITestMethods _methods, QueueHandler _queuehandler) {
+        public TestHub (ITestMethods _methods) {
             this.methods = _methods;
-            this.queuehandler = _queuehandler;
+            // this.queuehandler = _queuehandler;
         }
         public async Task newMessage (string username, string value) {
             await Clients.All.SendAsync ("messageReceived", username, value);
