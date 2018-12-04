@@ -1,0 +1,15 @@
+version: "3.5"
+services:
+    web:
+        build: .
+        ports:
+            - 0.0.0.0:5001:5001
+        networks: 
+            - potentiometer-network
+        labels:
+            - "SERVICE_5001_NAME=QuizEngine"
+            - "SERVICE_TAGS=QuizEngineTag"
+networks:
+    potentiometer-network:
+        name: potentiometer-network
+        external: true

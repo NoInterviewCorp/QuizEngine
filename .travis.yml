@@ -1,0 +1,13 @@
+language: csharp
+solution: Evaluation_Backend  
+notifications:
+  email:
+    on_success: always
+    on_failure: always
+  slack: cgiwave6:1NqbLKzmuRjgH6YOBVndxtwR
+mono: none
+dotnet: 2.1
+script:
+  - cd Evaluation_BackEnd
+  - dotnet restore
+  - dotnet build
