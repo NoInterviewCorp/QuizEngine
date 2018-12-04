@@ -12,7 +12,7 @@ using RabbitMQ.Client;
 namespace Evaluation_BackEnd.Persistence {
     public class LearnersMethods : ITestMethods {
         private static QueueHandler queuehandler;
-        public LearnersMethods ( QueueHandler _queuehandler) {
+        public LearnersMethods (QueueHandler _queuehandler) {
             // graphclient = _graphclient;
             queuehandler = _queuehandler;
         }
@@ -63,13 +63,13 @@ namespace Evaluation_BackEnd.Persistence {
         public void GetQuestionsBatch (string username, string tech, List<string> concepts) {
             var RequestData = new QuestionsBatchRequest (username, tech, concepts);
             var serializeddata = RequestData.Serialize ();
-            queuehandler.model.BasicPublish ("KnowledgeExchange", "Routing Key", null, serializeddata);
+            queuehandler.model.BasicPublish ("KnowledgeExchange", "Question.Batch", null, serializeddata);
         }
 
         public void RequestConceptFromTechnology (string username, string tech) {
             var temp = new ConceptRequest (username, tech);
             var serializeddata = temp.Serialize ();
-            queuehandler.model.BasicPublish ("KnowledgeExchange", "Routing key", null, serializeddata);
+            queuehandler.model.BasicPublish ("KnowledgeExchange", "Request.Concepts", null, serializeddata);
         }
 
         public void GetQuestions (string username, string tech, string concept) {

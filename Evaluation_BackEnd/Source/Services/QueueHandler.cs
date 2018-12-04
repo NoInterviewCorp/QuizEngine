@@ -9,8 +9,7 @@ using Microsoft.AspNetCore.SignalR;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 namespace Learners.Services {
-    public class QueueHandler : IDisposable 
-    {
+    public class QueueHandler : IDisposable {
         private static ConnectionFactory factory;
         private static IConnection connection;
         public IModel model;
@@ -51,7 +50,7 @@ namespace Learners.Services {
                 await hubContext.Clients.Client (ConnectionData.userconnectiondata[data.username]).SendAsync ("", data.questions.Values);
                 await Task.Yield ();
             };
-            channel.BasicConsume ("QuizEngine_KnowledgeGraph", false, consumer);
+            channel.BasicConsume ("Contributer_QuizEngine_Questions", false, consumer);
         }
         public void ConceptResponseHandler () {
             var channel = connection.CreateModel ();
