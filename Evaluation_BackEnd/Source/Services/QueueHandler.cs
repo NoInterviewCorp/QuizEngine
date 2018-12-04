@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using asp_back.hubs;
-using Evaluation_BackEnd.ContentWrapper;
 using Evaluation_BackEnd.Models;
+using Evaluation_BackEnd.RabbitMQModels;
 using Evaluation_BackEnd.StaticData;
 using Microsoft.AspNetCore.SignalR;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-namespace Learners.Services {
+namespace Learners.Services
+{
     public class QueueHandler : IDisposable {
         private static ConnectionFactory factory;
         private static IConnection connection;

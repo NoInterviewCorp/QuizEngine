@@ -5,11 +5,10 @@ using Evaluation_BackEnd.Models;
 using Evaluation_BackEnd.RabbitMQModels;
 using Evaluation_BackEnd.StaticData;
 using Learners.Services;
-using Microsoft.EntityFrameworkCore;
-using Neo4j.Driver.V1;
 using RabbitMQ.Client;
 
-namespace Evaluation_BackEnd.Persistence {
+namespace Evaluation_BackEnd.Persistence
+{
     public class LearnersMethods : ITestMethods {
         private static QueueHandler queuehandler;
         public LearnersMethods (QueueHandler _queuehandler) {
@@ -34,8 +33,11 @@ namespace Evaluation_BackEnd.Persistence {
                 }
             }
         }
-        public void SendEvaluationToGraph () {
-            
+        public void SendEvaluationToGraph (string username,string concept,int bloom) 
+        {
+            var requestdata = new ResultWrapper(username,concept,bloom);
+            var serilaizeddata = requestdata.Serialize();
+            queuehandler.model.BasicPublish("KnowledgeExchange","Result.Update",null,serilaizeddata);
         }
         public void OnFinish (UserData data) {
             throw new NotImplementedException ();
