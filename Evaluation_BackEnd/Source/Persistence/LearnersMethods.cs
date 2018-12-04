@@ -16,23 +16,6 @@ namespace Evaluation_BackEnd.Persistence {
             // graphclient = _graphclient;
             queuehandler = _queuehandler;
         }
-
-        public void AddResult (TemporaryData temporary) {
-            throw new NotImplementedException ();
-        }
-
-        public int BloomLevel (string QuestionId) {
-            throw new NotImplementedException ();
-        }
-
-        public int CheckBloomLevelOfTopic (int score) {
-            throw new NotImplementedException ();
-        }
-
-        public bool CheckOption (string optionId) {
-            throw new NotImplementedException ();
-        }
-
         public bool CountQuizAttempts (string tech, string username) {
             throw new NotImplementedException ();
         }
@@ -51,7 +34,9 @@ namespace Evaluation_BackEnd.Persistence {
                 }
             }
         }
-
+        public void SendEvaluationToGraph () {
+            
+        }
         public void OnFinish (UserData data) {
             throw new NotImplementedException ();
         }

@@ -15,9 +15,9 @@ namespace asp_back.hubs {
         public TestHub (ITestMethods _methods) {
             this.methods = _methods;
         }
-        public async Task newMessage (string username, string value) {
-            await Clients.All.SendAsync ("messageReceived", username, value);
-        }
+        // public async Task newMessage (string username, string value) {
+        //     await Clients.All.SendAsync ("messageReceived", username, value);
+        // }
         public async Task RequestConcepts (string username, string technology) {
             methods.RequestConceptFromTechnology (username, technology);
             await Clients.Caller.SendAsync ("Request For Concept Recieved");
@@ -31,17 +31,17 @@ namespace asp_back.hubs {
         public async Task OnFinish () {
             await Clients.Caller.SendAsync ("Data Seeded");
         }
-        public async Task CountQuizAttempts (string tech, string username) {
-            bool AttemptedEarlier = false;
-            AttemptedEarlier = methods.CountQuizAttempts (tech, username);
-            await Clients.Caller.SendAsync ("Got the Response", AttemptedEarlier);
-        }
+        // public async Task CountQuizAttempts (string tech, string username) {
+        //     bool AttemptedEarlier = false;
+        //     AttemptedEarlier = methods.CountQuizAttempts (tech, username);
+        //     await Clients.Caller.SendAsync ("Got the Response", AttemptedEarlier);
+        // }
         public async Task EvaluateAnswer (string Username, string QuestionId, string OptionId) {
             methods.EvaluateAnswer(Username, QuestionId,OptionId);
             await Clients.Caller.SendAsync ("Evaluating Answer");
         }
-        public async Task GetQuestions (string username, string tech, string concept) {
-            methods.GetQuestions (username, tech, concept);
+        public async Task GetQuestionsBatch (string username, string tech, List<string> concept) {
+            methods.GetQuestionsBatch (username, tech, concept);
             await Clients.Caller.SendAsync ("Recieved Request for Questions");
         }
         public override async Task OnConnectedAsync () 
