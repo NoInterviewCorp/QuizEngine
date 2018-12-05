@@ -16,6 +16,8 @@ namespace Evaluation_BackEnd.Models {
         public Dictionary<string, List<Question>> QuestionsAttempted;
         public TemporaryData (string tech, List<string> concepts) {
             TechName = tech;
+            ConceptsAttempted = new Dictionary<string, AttemptedConcept>();
+            QuestionsAttempted = new Dictionary<string, List<Question>>();
             foreach (var concept in concepts) {
                 ConceptsAttempted[concept] = (new AttemptedConcept (concept));
             }

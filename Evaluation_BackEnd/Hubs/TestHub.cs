@@ -37,23 +37,25 @@ namespace asp_back.hubs {
         //     await Clients.Caller.SendAsync ("Got the Response", AttemptedEarlier);
         // }
         public async Task EvaluateAnswer (string Username, string QuestionId, string OptionId) {
-            methods.EvaluateAnswer(Username, QuestionId,OptionId);
+            methods.EvaluateAnswer (Username, QuestionId, OptionId);
             await Clients.Caller.SendAsync ("Evaluating Answer");
         }
         public async Task GetQuestionsBatch (string username, string tech, List<string> concept) {
             methods.GetQuestionsBatch (username, tech, concept);
             await Clients.Caller.SendAsync ("Recieved Request for Questions");
         }
-        public override async Task OnConnectedAsync () 
-        {
+        public override async Task OnConnectedAsync () {
             var httpContext = Context.GetHttpContext ();
             var username = httpContext.Request.Query["username"].ToString ();
-            ConnectionData.userconnectiondata.Add (username, Context.ConnectionId);
+            Console.WriteLine (username);
+            Console.WriteLine (Context.ConnectionId);
+            var ConnectionId = Context.ConnectionId;
+            ConnectionData.userconnectiondata.TryAdd (username,ConnectionId);
+            Console.WriteLine(ConnectionData.userconnectiondata[username]);
             await base.OnConnectedAsync ();
         }
 
-        public override async Task OnDisconnectedAsync (Exception exception) 
-        {
+        public override async Task OnDisconnectedAsync (Exception exception) {
             await base.OnDisconnectedAsync (exception);
         }
     }

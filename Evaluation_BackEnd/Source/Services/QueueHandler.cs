@@ -8,8 +8,7 @@ using Evaluation_BackEnd.StaticData;
 using Microsoft.AspNetCore.SignalR;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-namespace Learners.Services
-{
+namespace Learners.Services {
     public class QueueHandler : IDisposable {
         private static ConnectionFactory factory;
         private static IConnection connection;
@@ -34,22 +33,32 @@ namespace Learners.Services
             var channel = connection.CreateModel ();
             var consumer = new AsyncEventingBasicConsumer (channel);
             consumer.Received += async (model, ea) => {
-                Console.WriteLine ("<--------------------Recieved Questions--------------------->");
-                var body = ea.Body;
-                var data = (QuestionBatchResponse) body.DeSerialize (typeof (QuestionBatchResponse));
-                foreach (KeyValuePair<string, List<Question>> entry in data.questions) {
-                    if (TemporaryQuizData.data.ContainsKey (data.username)) {
-                        TemporaryQuizData.data[data.username].QuestionsAttempted[entry.Key].AddRange (data.questions[entry.Key]);
+                try {
+                    Console.WriteLine ("<--------------------Recieved Questions--------------------->");
+                    channel.BasicAck (ea.DeliveryTag, false);
+                    var body = ea.Body;
+                    var data = (QuestionBatchResponse) body.DeSerialize (typeof (QuestionBatchResponse));
+                    foreach (KeyValuePair<string, List<Question>> entry in data.questions) {
+                        if (TemporaryQuizData.data.ContainsKey (data.username)) {
+                            TemporaryQuizData.data[data.username].QuestionsAttempted[entry.Key].AddRange (data.questions[entry.Key]);
+                        }
                     }
+                    Console.WriteLine (data);
+                    Console.WriteLine ("<------------------------------------------------------------>");
+                    var routingKey = ea.RoutingKey;
+                    Console.WriteLine (" - Routing Key <{0}>", routingKey);
+                    Console.WriteLine ("- Delivery Tag <{0}>", ea.DeliveryTag);
+                    await hubContext.Clients.Client (ConnectionData.userconnectiondata[data.username]).SendAsync ("", data.questions.Values);
+                    await Task.Yield ();
+                } catch (Exception e) {
+                    Console.WriteLine ("----------------------EXCEPTION-MESSAGE------------------------------------");
+                    Console.WriteLine (e.Message);
+                    Console.WriteLine ("----------------------STACK-TRACE-----------------------------------------");
+                    Console.WriteLine (e.StackTrace);
+                    Console.WriteLine ("-------------------------INNER-EXCEPTION-----------------------------");
+                    Console.WriteLine (e.InnerException);
+                    // return null;
                 }
-                Console.WriteLine (data);
-                Console.WriteLine ("<------------------------------------------------------------>");
-                channel.BasicAck (ea.DeliveryTag, false);
-                var routingKey = ea.RoutingKey;
-                Console.WriteLine (" - Routing Key <{0}>", routingKey);
-                Console.WriteLine ("- Delivery Tag <{0}>", ea.DeliveryTag);
-                await hubContext.Clients.Client (ConnectionData.userconnectiondata[data.username]).SendAsync ("", data.questions.Values);
-                await Task.Yield ();
             };
             channel.BasicConsume ("Contributer_QuizEngine_Questions", false, consumer);
         }

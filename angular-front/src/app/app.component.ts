@@ -16,12 +16,16 @@ export class AppComponent {
     const tbMessage: HTMLInputElement = document.querySelector('#tbMessage');
     const btnSend: HTMLButtonElement = document.querySelector('#btnSend');
     const username = new Date().getTime();
-
+    const user = "akashg524";
     const connection = new signalR.HubConnectionBuilder()
-      .withUrl('http://172.23.238.173:5001/test')
+      .withUrl('http://localhost:5001/test?username='+user)
       // .withHubProtocol(new MessagePackHubProtocol())      
       .build();
-    connection.start().then(() => console.log('connection established')).catch((err) => console.log('Error::: ', err));
+    connection.start()
+		.then(() => {
+			console.log('connection established');
+		})
+		.catch((err) => console.log('Error::: ', err));
     connection.on('messageReceived', (username: string, message: string) => {
       const m = document.createElement('div');
 

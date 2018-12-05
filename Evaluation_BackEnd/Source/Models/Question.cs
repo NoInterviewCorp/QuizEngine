@@ -9,6 +9,6 @@ namespace Evaluation_BackEnd.Models {
         [JsonIgnore]
         public string CorrectOptionId { get; set; }
         public string ProblemStatement { get; set; }
-        public List<Option> Options;
+        public List<Option> Options = new List<Option>();
     }
 }
