@@ -17,7 +17,7 @@ namespace Learners.Services {
         private const string ExchangeNme = "KnowledgeGraphExchange";
         public QueueHandler (IHubContext<TestHub> _hubcontext) {
             factory = new ConnectionFactory {
-                HostName = "rabbitmq",
+                HostName = "172.23.238.173",
                 UserName = "achausername",
                 Password = "strongpassword",
                 DispatchConsumersAsync = true
@@ -25,7 +25,7 @@ namespace Learners.Services {
             hubContext = _hubcontext;
             connection = factory.CreateConnection ();
             model = connection.CreateModel ();
-            this.QuestionBatchResponseHandler();
+            this.QuestionBatchResponseHandler ();
         }
         public void Dispose () {
             connection.Close ();
