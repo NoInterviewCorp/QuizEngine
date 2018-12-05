@@ -11,8 +11,8 @@ using RabbitMQ.Client.Events;
 namespace Learners.Services {
     public class QueueHandler : IDisposable {
         private static ConnectionFactory factory;
-        private static IConnection connection;
-        public IModel model;
+        private static IConnection connection { get; set; }
+        public IModel model { get; set; }
         private readonly IHubContext<TestHub> hubContext;
         private const string ExchangeNme = "KnowledgeGraphExchange";
         public QueueHandler () {
