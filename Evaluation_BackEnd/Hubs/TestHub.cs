@@ -41,8 +41,9 @@ namespace asp_back.hubs {
             await Clients.Caller.SendAsync ("Evaluating Answer");
         }
         public async Task GetQuestionsBatch (string username, string tech, List<string> concept) {
+            Console.WriteLine("Recieved request for questions");
             methods.GetQuestionsBatch (username, tech, concept);
-            await Clients.Caller.SendAsync ("Recieved Request for Questions");
+            await Clients.Caller.SendAsync ("ReceivedRequest");
         }
         public override async Task OnConnectedAsync () {
             var httpContext = Context.GetHttpContext ();

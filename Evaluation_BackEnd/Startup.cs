@@ -27,7 +27,7 @@ namespace asp_back
                     .AllowAnyMethod ()
                     .AllowAnyHeader ()
                     .AllowCredentials ()
-                    .WithOrigins ("http://localhost:4200");
+                    .AllowAnyOrigin();
             }));
             services.AddSingleton<QueueHandler>();
             services.AddSignalR ();
@@ -44,7 +44,7 @@ namespace asp_back
                 app.UseHsts ();
             }
             app.UseCors ("CorsPolicy");
-            app.UseWebSockets ();
+            
             app.UseSignalR (routes => {
                 routes.MapHub<TestHub> ("/test");
             });
