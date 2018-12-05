@@ -13,8 +13,6 @@ namespace Evaluation_BackEnd.Persistence {
         void OnFinish (UserData data);
         void GetQuestionsBatch (string username, string tech, List<string> concepts);
         void GetQuestions (String username, string tech, string concept);
-        bool CountQuizAttempts (string tech, string username);
-        void RequestConceptFromTechnology (string username, string tech);
-        void EvaluateAnswer (string username, string QuestionId, string OptionId);
+        void EvaluateAnswer (string username, string QuestionId, int OptionId);
     }
 }

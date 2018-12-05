@@ -19,10 +19,6 @@ namespace asp_back.hubs {
         // public async Task newMessage (string username, string value) {
         //     await Clients.All.SendAsync ("messageReceived", username, value);
         // }
-        public async Task RequestConcepts (string username, string technology) {
-            methods.RequestConceptFromTechnology (username, technology);
-            await Clients.Caller.SendAsync ("Request For Concept Recieved");
-        }
         public async Task OnStart (string username, string tech, List<string> concepts) {
             temp = new TemporaryData (tech, concepts);
             methods.OnStart (temp, username);
@@ -37,7 +33,7 @@ namespace asp_back.hubs {
         //     AttemptedEarlier = methods.CountQuizAttempts (tech, username);
         //     await Clients.Caller.SendAsync ("Got the Response", AttemptedEarlier);
         // }
-        public async Task EvaluateAnswer (string Username, string QuestionId, string OptionId) {
+        public async Task EvaluateAnswer (string Username, string QuestionId, int OptionId) {
             methods.EvaluateAnswer (Username, QuestionId, OptionId);
             await Clients.Caller.SendAsync ("Evaluating Answer");
         }

@@ -14,16 +14,13 @@ namespace Evaluation_BackEnd.Persistence {
             // graphclient = _graphclient;
             queuehandler = _queuehandler;
         }
-        public bool CountQuizAttempts (string tech, string username) {
-            throw new NotImplementedException ();
-        }
 
-        public void EvaluateAnswer (string username, string QuestionId, string OptionId) {
+        public void EvaluateAnswer (string username, string QuestionId, int OptionId) {
             var userdata = TemporaryQuizData.data[username];
             foreach (KeyValuePair<string, List<Question>> entry in userdata.QuestionsAttempted) {
-                var question = entry.Value.FirstOrDefault (id => id.Id == QuestionId);
+                var question = entry.Value.FirstOrDefault (id => id.QuestionId == QuestionId);
                 if (question != null) {
-                    if (question.CorrectOptionId == OptionId) {
+                    if (question.CorrectOption.OptionId == OptionId) {
                         TemporaryQuizData.data[username].ConceptsAttempted[entry.Key].QuestionAttemptedCorrect++;
                         TemporaryQuizData.data[username].ConceptsAttempted[entry.Key].TotalQuestionAttempted++;
                     } else {
@@ -35,7 +32,7 @@ namespace Evaluation_BackEnd.Persistence {
         public void SendEvaluationToGraph (string username, string concept, int bloom) {
             var requestdata = new ResultWrapper (username, concept, bloom);
             var serilaizeddata = requestdata.Serialize ();
-            queuehandler.Model.BasicPublish ("KnowledgeExchange", "Result.Update", null, serilaizeddata);
+            queuehandler.Model.BasicPublish ("KnowledgeGraphExchange", "Result.Update", null, serilaizeddata);
         }
         public void OnFinish (UserData data) {
             throw new NotImplementedException ();
@@ -59,12 +56,6 @@ namespace Evaluation_BackEnd.Persistence {
                 Console.WriteLine (e.Message);
                 throw;
             }
-        }
-
-        public void RequestConceptFromTechnology (string username, string tech) {
-            var temp = new ConceptRequest (username, tech);
-            var serializeddata = temp.Serialize ();
-            queuehandler.Model.BasicPublish ("KnowledgeExchange", "Request.Concepts", null, serializeddata);
         }
 
         public void GetQuestions (string username, string tech, string concept) {

@@ -4,7 +4,7 @@ using Evaluation_BackEnd.Models;
 namespace Evaluation_BackEnd.RabbitMQModels {
     public class QuestionBatchResponse {
         public string Username { get; set; }
-        public Dictionary<string, List<Question>> ResponseDictionary = new Dictionary<string, List<Question>>();
+        public List<Question> ResponseList = new List<Question>();
         public QuestionBatchResponse()
         {
             
