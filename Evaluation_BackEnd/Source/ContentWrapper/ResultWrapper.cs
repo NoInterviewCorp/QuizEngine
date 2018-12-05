@@ -4,7 +4,7 @@ namespace Evaluation_BackEnd.RabbitMQModels {
         public string Concept;
         public int Bloom;
 
-        public ResultWrapper (string username, string concept, int bloom) 
+        public ResultWrapper (string username, string concept, int bloom)
         {
             Username = username;
             Concept = concept;

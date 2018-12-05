@@ -3,7 +3,7 @@ services:
     web:
         build: .
         ports:
-            - 0.0.0.0:5001:5001
+            - 0.0.0.0:5010:5010
         networks: 
             - potentiometer-network
         labels:
