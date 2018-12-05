@@ -11,6 +11,7 @@ namespace Evaluation_BackEnd.RabbitMQModels {
             Username = _username;
             Tech = _tech;
             Concepts = new List<string>();
+            Concepts.Clear();
             Concepts.AddRange (_concepts);
         }
     }

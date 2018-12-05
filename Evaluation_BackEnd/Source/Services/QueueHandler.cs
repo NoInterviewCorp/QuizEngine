@@ -15,18 +15,16 @@ namespace Learners.Services {
         public IModel Model { get; set; }
         private readonly IHubContext<TestHub> hubContext;
         private const string ExchangeName = "KnowledgeGraphExchange";
-        public QueueHandler () {
+        public QueueHandler (IHubContext<TestHub> _hubcontext) {
             factory = new ConnectionFactory {
                 HostName = "172.23.238.173",
                 UserName = "achausername",
                 Password = "strongpassword",
                 DispatchConsumersAsync = true
             };
-            // hubContext = _hubcontext;
+            hubContext = _hubcontext;
             connection = factory.CreateConnection ();
             this.Model = connection.CreateModel ();
-            this.Model.QueueDeclare ("QuizEngine_KnowledgeGraph_QuestionBatch", false, false, false, null);
-            this.Model.QueueBind ("QuizEngine_KnowledgeGraph_QuestionBatch", ExchangeName, "Question.Batch");
             this.QuestionBatchResponseHandler ();
         }
         public void Dispose () {
