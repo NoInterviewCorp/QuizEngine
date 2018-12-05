@@ -35,7 +35,7 @@ namespace Evaluation_BackEnd.Persistence {
         public void SendEvaluationToGraph (string username, string concept, int bloom) {
             var requestdata = new ResultWrapper (username, concept, bloom);
             var serilaizeddata = requestdata.Serialize ();
-            queuehandler.model.BasicPublish ("KnowledgeExchange", "Result.Update", null, serilaizeddata);
+            queuehandler.Model.BasicPublish ("KnowledgeExchange", "Result.Update", null, serilaizeddata);
         }
         public void OnFinish (UserData data) {
             throw new NotImplementedException ();
@@ -50,7 +50,7 @@ namespace Evaluation_BackEnd.Persistence {
             try {
                 var RequestData = new QuestionsBatchRequest (username, tech, concepts);
                 var serializeddata = RequestData.Serialize ();
-                queuehandler.model.BasicPublish (exchange: "KnowledgeGraphExchange", 
+                queuehandler.Model.BasicPublish (exchange: "KnowledgeGraphExchange", 
                     routingKey: "Question.Batch", 
                     basicProperties : null, 
                     body : serializeddata);
@@ -64,13 +64,13 @@ namespace Evaluation_BackEnd.Persistence {
         public void RequestConceptFromTechnology (string username, string tech) {
             var temp = new ConceptRequest (username, tech);
             var serializeddata = temp.Serialize ();
-            queuehandler.model.BasicPublish ("KnowledgeExchange", "Request.Concepts", null, serializeddata);
+            queuehandler.Model.BasicPublish ("KnowledgeExchange", "Request.Concepts", null, serializeddata);
         }
 
         public void GetQuestions (string username, string tech, string concept) {
             var temporary = new QuestionsRequest (username, tech, concept);
             var serializeddata = temporary.Serialize ();
-            queuehandler.model.BasicPublish ("KnowledgeExchange", "Routing key", null, serializeddata);
+            queuehandler.Model.BasicPublish ("KnowledgeExchange", "Routing key", null, serializeddata);
         }
     }
 }

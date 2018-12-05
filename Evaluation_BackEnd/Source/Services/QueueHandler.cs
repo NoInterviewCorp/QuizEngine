@@ -12,9 +12,9 @@ namespace Learners.Services {
     public class QueueHandler : IDisposable {
         private static ConnectionFactory factory;
         private static IConnection connection { get; set; }
-        public IModel model { get; set; }
+        public IModel Model { get; set; }
         private readonly IHubContext<TestHub> hubContext;
-        private const string ExchangeNme = "KnowledgeGraphExchange";
+        private const string ExchangeName = "KnowledgeGraphExchange";
         public QueueHandler () {
             factory = new ConnectionFactory {
                 HostName = "172.23.238.173",
@@ -24,7 +24,9 @@ namespace Learners.Services {
             };
             // hubContext = _hubcontext;
             connection = factory.CreateConnection ();
-            model = connection.CreateModel ();
+            this.Model = connection.CreateModel ();
+            this.Model.QueueDeclare ("QuizEngine_KnowledgeGraph_QuestionBatch", false, false, false, null);
+            this.Model.QueueBind ("QuizEngine_KnowledgeGraph_QuestionBatch", ExchangeName, "Question.Batch");
             this.QuestionBatchResponseHandler ();
         }
         public void Dispose () {
