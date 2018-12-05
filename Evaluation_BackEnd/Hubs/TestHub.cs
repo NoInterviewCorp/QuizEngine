@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Evaluation_BackEnd.Models;
 using Evaluation_BackEnd.Persistence;
@@ -41,7 +42,7 @@ namespace asp_back.hubs {
             await Clients.Caller.SendAsync ("Evaluating Answer");
         }
         public async Task GetQuestionsBatch (string username, string tech, List<string> concept) {
-            Console.WriteLine("Recieved request for questions");
+            Console.WriteLine ("Recieved request for questions");
             methods.GetQuestionsBatch (username, tech, concept);
             await Clients.Caller.SendAsync ("ReceivedRequest");
         }
@@ -51,12 +52,20 @@ namespace asp_back.hubs {
             Console.WriteLine (username);
             Console.WriteLine (Context.ConnectionId);
             var ConnectionId = Context.ConnectionId;
-            ConnectionData.userconnectiondata.TryAdd (username,ConnectionId);
-            Console.WriteLine(ConnectionData.userconnectiondata[username]);
+            if (!(ConnectionData.userconnectiondata.TryAdd (username, ConnectionId))) {
+                ConnectionData.userconnectiondata.Remove (username);
+                ConnectionData.userconnectiondata.Add (username, ConnectionId);
+            }
+            Console.WriteLine (ConnectionData.userconnectiondata[username]);
             await base.OnConnectedAsync ();
         }
 
         public override async Task OnDisconnectedAsync (Exception exception) {
+            if (ConnectionData.userconnectiondata.ContainsValue (Context.ConnectionId))
+            {
+                var user = ConnectionData.userconnectiondata.First(kvp => kvp.Value == Context.ConnectionId);
+                ConnectionData.userconnectiondata.Remove(user.Key);
+            }
             await base.OnDisconnectedAsync (exception);
         }
     }
