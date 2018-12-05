@@ -51,7 +51,7 @@ namespace Evaluation_BackEnd.Persistence
             Console.WriteLine("---Interface method invoked---");
             var RequestData = new QuestionsBatchRequest (username, tech, concepts);
             var serializeddata = RequestData.Serialize ();
-            queuehandler.model.BasicPublish ("KnowledgeExchange", "Question.Batch", null, serializeddata);
+            queuehandler.model.BasicPublish ("KnowledgeGraphExchange", "Question.Batch", null, serializeddata);
         }
 
         public void RequestConceptFromTechnology (string username, string tech) {
