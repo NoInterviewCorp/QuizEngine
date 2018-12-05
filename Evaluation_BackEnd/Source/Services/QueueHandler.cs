@@ -15,14 +15,14 @@ namespace Learners.Services {
         public IModel model;
         private readonly IHubContext<TestHub> hubContext;
         private const string ExchangeNme = "KnowledgeGraphExchange";
-        public QueueHandler (IHubContext<TestHub> _hubcontext) {
+        public QueueHandler () {
             factory = new ConnectionFactory {
                 HostName = "172.23.238.173",
                 UserName = "achausername",
                 Password = "strongpassword",
                 DispatchConsumersAsync = true
             };
-            hubContext = _hubcontext;
+            // hubContext = _hubcontext;
             connection = factory.CreateConnection ();
             model = connection.CreateModel ();
             this.QuestionBatchResponseHandler ();
