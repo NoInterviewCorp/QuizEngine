@@ -7,8 +7,7 @@ using Evaluation_BackEnd.StaticData;
 using Learners.Services;
 using RabbitMQ.Client;
 
-namespace Evaluation_BackEnd.Persistence
-{
+namespace Evaluation_BackEnd.Persistence {
     public class LearnersMethods : ITestMethods {
         private static QueueHandler queuehandler;
         public LearnersMethods (QueueHandler _queuehandler) {
@@ -33,11 +32,10 @@ namespace Evaluation_BackEnd.Persistence
                 }
             }
         }
-        public void SendEvaluationToGraph (string username,string concept,int bloom) 
-        {
-            var requestdata = new ResultWrapper(username,concept,bloom);
-            var serilaizeddata = requestdata.Serialize();
-            queuehandler.model.BasicPublish("KnowledgeExchange","Result.Update",null,serilaizeddata);
+        public void SendEvaluationToGraph (string username, string concept, int bloom) {
+            var requestdata = new ResultWrapper (username, concept, bloom);
+            var serilaizeddata = requestdata.Serialize ();
+            queuehandler.model.BasicPublish ("KnowledgeExchange", "Result.Update", null, serilaizeddata);
         }
         public void OnFinish (UserData data) {
             throw new NotImplementedException ();
@@ -48,17 +46,17 @@ namespace Evaluation_BackEnd.Persistence
         }
 
         public void GetQuestionsBatch (string username, string tech, List<string> concepts) {
-            Console.WriteLine("---Interface method invoked---");
-            try
-            {
+            Console.WriteLine ("---Interface method invoked---");
+            try {
                 var RequestData = new QuestionsBatchRequest (username, tech, concepts);
                 var serializeddata = RequestData.Serialize ();
-                queuehandler.model.BasicPublish ("KnowledgeGraphExchange", "Question.Batch", null, serializeddata);
-                
-            }
-            catch (System.Exception e)
-            {
-                Console.WriteLine(e.Message);
+                queuehandler.model.BasicPublish (exchange: "KnowledgeGraphExchange", 
+                    routingKey: "Question.Batch", 
+                    basicProperties : null, 
+                    body : serializeddata);
+
+            } catch (System.Exception e) {
+                Console.WriteLine (e.Message);
                 throw;
             }
         }

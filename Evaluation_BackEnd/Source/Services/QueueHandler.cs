@@ -14,7 +14,7 @@ namespace Learners.Services {
         private static IConnection connection;
         public IModel model;
         private readonly IHubContext<TestHub> hubContext;
-        private const string ExchangeNme = "KnowledgeExchange";
+        private const string ExchangeNme = "KnowledgeGraphExchange";
         public QueueHandler (IHubContext<TestHub> _hubcontext) {
             factory = new ConnectionFactory {
                 HostName = "rabbitmq",
@@ -25,6 +25,7 @@ namespace Learners.Services {
             hubContext = _hubcontext;
             connection = factory.CreateConnection ();
             model = connection.CreateModel ();
+            this.QuestionBatchResponseHandler();
         }
         public void Dispose () {
             connection.Close ();
