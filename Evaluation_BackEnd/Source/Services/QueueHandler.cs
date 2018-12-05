@@ -40,8 +40,8 @@ namespace Learners.Services {
                     var body = ea.Body;
                     var data = (QuestionBatchResponse) body.DeSerialize (typeof (QuestionBatchResponse));
                     foreach (KeyValuePair<string, List<Question>> entry in data.questions) {
-                        if (TemporaryQuizData.data.ContainsKey (data.username)) {
-                            TemporaryQuizData.data[data.username].QuestionsAttempted[entry.Key].AddRange (data.questions[entry.Key]);
+                        if (TemporaryQuizData.data.ContainsKey (data.Username)) {
+                            TemporaryQuizData.data[data.Username].QuestionsAttempted[entry.Key].AddRange (data.questions[entry.Key]);
                         }
                     }
                     Console.WriteLine (data);
@@ -49,7 +49,7 @@ namespace Learners.Services {
                     var routingKey = ea.RoutingKey;
                     Console.WriteLine (" - Routing Key <{0}>", routingKey);
                     Console.WriteLine ("- Delivery Tag <{0}>", ea.DeliveryTag);
-                    await hubContext.Clients.Client (ConnectionData.userconnectiondata[data.username]).SendAsync ("", data.questions.Values);
+                    await hubContext.Clients.Client (ConnectionData.userconnectiondata[data.Username]).SendAsync ("", data.questions.Values);
                     await Task.Yield ();
                 } catch (Exception e) {
                     Console.WriteLine ("----------------------EXCEPTION-MESSAGE------------------------------------");
