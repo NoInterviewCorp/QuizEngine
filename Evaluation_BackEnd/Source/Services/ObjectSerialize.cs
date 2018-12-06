@@ -20,6 +20,7 @@ namespace Learners.Services
         public static object DeSerialize(this byte[] arrBytes, Type type)
         {
             var json = Encoding.Default.GetString(arrBytes);
+            Console.WriteLine(json);
             return JsonConvert.DeserializeObject(json, type);
         }
 
