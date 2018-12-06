@@ -51,6 +51,10 @@ namespace Learners.Services
                     Console.WriteLine(data);
                     Console.WriteLine(data.Username);
                     Console.WriteLine(data.ResponseList.Count());
+                    foreach(var v in data.ResponseList)
+                    {
+                        Console.WriteLine(v);
+                    }
                     Console.WriteLine("<------------------------------------------------------------>");
                     var routingKey = ea.RoutingKey;
                     Console.WriteLine(" - Routing Key <{0}>", routingKey);
