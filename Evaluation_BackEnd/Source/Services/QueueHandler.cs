@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using asp_back.hubs;
 using Evaluation_BackEnd.Models;
@@ -48,6 +49,8 @@ namespace Learners.Services
                     var body = ea.Body;
                     var data = (QuestionBatchResponse)body.DeSerialize(typeof(QuestionBatchResponse));
                     Console.WriteLine(data);
+                    Console.WriteLine(data.Username);
+                    Console.WriteLine(data.ResponseList.Count());
                     Console.WriteLine("<------------------------------------------------------------>");
                     var routingKey = ea.RoutingKey;
                     Console.WriteLine(" - Routing Key <{0}>", routingKey);
