@@ -11,7 +11,7 @@ namespace Evaluation_BackEnd.Models
         public string ResourceId { get; set; }
         public BloomTaxonomy BloomLevel { get; set; }
         public string ProblemStatement { get; set; }
-        public Option CorrectOption { get; set; }
+        public int CorrectOptionId { get; set; }
         public List<Option> Options = new List<Option>();
         public Question()
         {

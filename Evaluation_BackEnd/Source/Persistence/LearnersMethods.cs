@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Evaluation_BackEnd.Models;
 using Evaluation_BackEnd.RabbitMQModels;
 using Evaluation_BackEnd.StaticData;
 using Learners.Services;
+using Microsoft.AspNetCore.SignalR;
 using RabbitMQ.Client;
 
 namespace Evaluation_BackEnd.Persistence
@@ -18,20 +20,44 @@ namespace Evaluation_BackEnd.Persistence
             queuehandler = _queuehandler;
         }
 
-        public void EvaluateAnswer(string username, string QuestionId, int OptionId)
+        public async Task EvaluateAnswer(string username, string QuestionId, int OptionId)
         {
-            // var userdata = TemporaryQuizData.data[username];
-            // var question = userdata.QuestionsAttempted.FirstOrDefault(id => id.QuestionId ==QuestionId);
-            // if(question!=null)
-            // {
-            //     if(question.CorrectOption.OptionId == OptionId)
-            //     {
-            //         TemporaryQuizData.data[username].ConceptsAttempted.Where(id => id.ConceptName ==question.)
-            //     }
-            // }
-            // foreach (var entry in userdata.QuestionsAttempted)
-            // {
-            // }
+            var question = TemporaryQuizData.TemporaryUserData[username].QuestionsAttempted.FirstOrDefault(v => v.QuestionId == QuestionId);
+            if (question != null)
+            {
+                if (question.CorrectOptionId == OptionId)
+                {
+                    foreach (var concept in question.Concepts)
+                    {
+                        var checkIfConceptExistInUserData = TemporaryQuizData.TemporaryUserData[username].ConceptsAttempted.FirstOrDefault(c => c.ConceptName == concept.Name);
+                        if (checkIfConceptExistInUserData != null)
+                        {
+                            TemporaryQuizData.TemporaryUserData[username].ConceptsAttempted
+                                .FirstOrDefault(c => c.ConceptName == concept.Name)
+                                .TotalQuestionAttempted++;
+                            SendEvaluationToGraph(username, concept.Name, (int)question.BloomLevel);
+                        }
+                    }
+                    Console.WriteLine("answer to the question ");
+                    Console.WriteLine(question.ProblemStatement);
+                    Console.WriteLine("is right");
+                }
+                else
+                {
+                    foreach (var concept in question.Concepts)
+                    {
+                        var checkIfConceptExistInUserData = TemporaryQuizData.TemporaryUserData[username].ConceptsAttempted.FirstOrDefault(c => c.ConceptName == concept.Name);
+                        if (checkIfConceptExistInUserData != null)
+                        {
+                            TemporaryQuizData.TemporaryUserData[username].ConceptsAttempted.FirstOrDefault(c => c.ConceptName == concept.Name).TotalQuestionAttempted++;
+                        }
+                    }
+                    Console.WriteLine("answer to the question ");
+                    Console.WriteLine(question.ProblemStatement);
+                    Console.WriteLine("is right");
+                }
+            }
+            await queuehandler.hubContext.Clients.Client(ConnectionData.userconnectiondata[username]).SendAsync("GetQuestion");
         }
         public void SendEvaluationToGraph(string username, string concept, int bloom)
         {
@@ -39,14 +65,15 @@ namespace Evaluation_BackEnd.Persistence
             var serilaizeddata = requestdata.Serialize();
             queuehandler.Model.BasicPublish("KnowledgeGraphExchange", "Result.Update", null, serilaizeddata);
         }
-        public void OnFinish(UserData data)
+        public async void OnFinish(Object Username)
         {
-            throw new NotImplementedException();
+            var username = (string)Username;
+            await queuehandler.hubContext.Clients.Client(ConnectionData.userconnectiondata[username]).SendAsync("Quiz Over");
         }
 
         public void OnStart(TemporaryData temp, string username)
         {
-            TemporaryQuizData.data[username] = temp;
+            TemporaryQuizData.TemporaryUserData[username] = temp;
         }
 
         public void GetQuestionsBatch(string username, string tech, List<string> concepts)
@@ -68,12 +95,9 @@ namespace Evaluation_BackEnd.Persistence
                 throw;
             }
         }
-
-        public void GetQuestions(string username, string tech, string concept)
+        public void StartTimer(string Username)
         {
-            var temporary = new QuestionsRequest(username, tech, concept);
-            var serializeddata = temporary.Serialize();
-            queuehandler.Model.BasicPublish("KnowledgeExchange", "Routing key", null, serializeddata);
+            var timer = new System.Threading.Timer(OnFinish, Username, 300000, -1);
         }
     }
 }

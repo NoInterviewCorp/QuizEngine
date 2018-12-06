@@ -16,7 +16,7 @@ namespace Learners.Services
         private static ConnectionFactory factory;
         private static IConnection connection { get; set; }
         public IModel Model { get; set; }
-        private readonly IHubContext<TestHub> hubContext;
+        public readonly IHubContext<TestHub> hubContext;
         private const string ExchangeName = "KnowledgeGraphExchange";
         public QueueHandler(IHubContext<TestHub> _hubcontext)
         {
@@ -51,6 +51,7 @@ namespace Learners.Services
                     Console.WriteLine(data);
                     Console.WriteLine(data.Username);
                     Console.WriteLine(data.ResponseList.Count());
+                    TemporaryQuizData.TemporaryUserData[data.Username].QuestionsAttempted.AddRange(data.ResponseList);
                     foreach(var v in data.ResponseList)
                     {
                         Console.WriteLine(v.ProblemStatement);

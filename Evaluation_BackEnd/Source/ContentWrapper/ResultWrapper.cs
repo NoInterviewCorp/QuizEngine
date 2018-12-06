@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using Evaluation_BackEnd.Models;
+
 namespace Evaluation_BackEnd.RabbitMQModels
 {
     public class ResultWrapper
