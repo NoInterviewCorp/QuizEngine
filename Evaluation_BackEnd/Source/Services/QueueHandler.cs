@@ -59,7 +59,7 @@ namespace Learners.Services
                     var routingKey = ea.RoutingKey;
                     Console.WriteLine(" - Routing Key <{0}>", routingKey);
                     Console.WriteLine("- Delivery Tag <{0}>", ea.DeliveryTag);
-                    await hubContext.Clients.Client(ConnectionData.userconnectiondata[data.Username]).SendAsync("", data.ResponseList);
+                    await hubContext.Clients.Client(ConnectionData.userconnectiondata[data.Username]).SendAsync("Get Question", data.ResponseList);
                     await Task.Yield();
                 }
                 catch (Exception e)
