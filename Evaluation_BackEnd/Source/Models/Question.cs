@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Evaluation_BackEnd.Models {
-    public class Question {
+namespace Evaluation_BackEnd.Models
+{
+    public class Question
+    {
         public string QuestionId { get; set; }
         [JsonIgnore]
         public BloomTaxonomy Bloomlevel { get; set; }

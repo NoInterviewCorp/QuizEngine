@@ -4,12 +4,15 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using MongoDB.Driver.Core;
 
-namespace Evaluation_BackEnd.Persistence {
-    public class LearnersContext {
+namespace Evaluation_BackEnd.Persistence
+{
+    public class LearnersContext
+    {
         public MongoClient database;
         private const string connectionstring = "mongodb://mongodb:27017";
-        public LearnersContext () {
-            database = new MongoClient (connectionstring);
+        public LearnersContext()
+        {
+            database = new MongoClient(connectionstring);
         }
     }
 }
