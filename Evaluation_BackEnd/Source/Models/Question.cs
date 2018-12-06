@@ -12,5 +12,9 @@ namespace Evaluation_BackEnd.Models
         public string ProblemStatement { get; set; }
         public Option CorrectOption { get; set; }
         public List<Option> Options = new List<Option>();
+        public Question()
+        {
+            
+        }
     }
 }
