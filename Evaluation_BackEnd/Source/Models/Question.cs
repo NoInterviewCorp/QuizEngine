@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace Evaluation_BackEnd.Models
@@ -9,7 +10,6 @@ namespace Evaluation_BackEnd.Models
         public List<Concept> Concepts = new List<Concept>();
         public string ResourceId { get; set; }
         public BloomTaxonomy BloomLevel { get; set; }
-        [JsonIgnore]
         public string ProblemStatement { get; set; }
         public Option CorrectOption { get; set; }
         public List<Option> Options = new List<Option>();
