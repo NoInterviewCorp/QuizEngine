@@ -7,6 +7,10 @@ namespace Evaluation_BackEnd.Models
         public string ConceptName { get; set; }
         public int QuestionAttemptedCorrect { get; set; }
         public int TotalQuestionAttempted { get; set; }
+        public AttemptedConcept()
+        {
+            
+        }
         public AttemptedConcept(string concept)
         {
             this.ConceptName = concept;

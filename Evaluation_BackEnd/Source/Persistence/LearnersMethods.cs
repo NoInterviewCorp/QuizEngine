@@ -68,6 +68,10 @@ namespace Evaluation_BackEnd.Persistence
         public async void OnFinish(Object Username)
         {
             var username = (string)Username;
+            var tempdata = TemporaryQuizData.TemporaryUserData[username];
+            QuizData quizdata = new QuizData(tempdata.TechName,tempdata.AttemptedOn,tempdata.ConceptsAttempted);
+            UserData userdata = new UserData(username,quizdata);
+            queuehandler.Model.BasicPublish("KnowledgeG")
             await queuehandler.hubContext.Clients.Client(ConnectionData.userconnectiondata[username]).SendAsync("Quiz Over");
         }
 

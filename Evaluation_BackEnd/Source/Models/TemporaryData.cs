@@ -12,10 +12,8 @@ namespace Evaluation_BackEnd.Models
         public string TechName { get; set; }
         // public BloomTaxonomy Blooms { get; set; }
         public string AttemptedOn { get; set; }
-        public bool IsCompleted { get; set; }
         public List<AttemptedConcept> ConceptsAttempted { get; set; }
-
-        [BsonIgnore]
+        [JsonIgnore]
         public List<Question> QuestionsAttempted;
         public TemporaryData()
         {
@@ -30,7 +28,6 @@ namespace Evaluation_BackEnd.Models
             {
                 ConceptsAttempted.Add(new AttemptedConcept(concept));
             }
-            IsCompleted = false;
             AttemptedOn = DateTime.Today.ToString("dd/MM/yyyy") + " " + DateTime.Now.ToString("HH:mm:ss");
             // Blooms = (BloomTaxonomy) (1);
         }

@@ -6,12 +6,12 @@ namespace Evaluation_BackEnd.Models
 {
     public class UserData
     {
-        public string username { get; set; }
-        public QuizData data;
-        // public List<Question> questions;
-        public UserData(QuizData _data)
+        public string Username { get; set; }
+        public QuizData Data;
+        public UserData(string username,QuizData data)
         {
-            data = _data;
+            Username = username;
+            Data = data;
         }
     }
 }
