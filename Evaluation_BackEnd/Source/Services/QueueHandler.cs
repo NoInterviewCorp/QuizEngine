@@ -79,6 +79,7 @@ namespace Learners.Services
                     {
                         Console.WriteLine(v.ProblemStatement);
                     }
+                    Console.WriteLine(TemporaryQuizData.TemporaryUserData[data.Username].QuestionsAttempted);
                     Console.WriteLine("<------------------------------------------------------------>");
                     var routingKey = ea.RoutingKey;
                     Console.WriteLine(" - Routing Key <{0}>", routingKey);
