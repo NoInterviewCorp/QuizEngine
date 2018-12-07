@@ -44,7 +44,7 @@ namespace Learners.Services
         }
         public async void OnFinish(Object Username)
         {
-            var username = (string)Username;
+            var username = (string)Username; 
             var tempdata = TemporaryQuizData.TemporaryUserData[username];
             QuizData quizdata = new QuizData(tempdata.TechName, tempdata.AttemptedOn, tempdata.ConceptsAttempted);
             UserData userdata = new UserData(username, quizdata);
@@ -69,8 +69,8 @@ namespace Learners.Services
                     Console.WriteLine(data);
                     Console.WriteLine(data.Username);
                     Console.WriteLine(data.ResponseList.Count());
-                    StartTimer(data.Username);
                     TemporaryQuizData.TemporaryUserData[data.Username].QuestionsAttempted.AddRange(data.ResponseList);
+                    StartTimer(data.Username);
                     foreach(var v in data.ResponseList)
                     {
                         Console.WriteLine(v.ProblemStatement);

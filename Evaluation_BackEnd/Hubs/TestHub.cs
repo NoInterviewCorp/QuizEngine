@@ -51,6 +51,7 @@ namespace asp_back.hubs
             {
                 ConnectionData.userconnectiondata.Remove(username);
                 ConnectionData.userconnectiondata.Add(username, ConnectionId);
+                TemporaryQuizData.TemporaryUserData.TryAdd(username,new TemporaryData());
             }
             Console.WriteLine(ConnectionData.userconnectiondata[username]);
             await base.OnConnectedAsync();
