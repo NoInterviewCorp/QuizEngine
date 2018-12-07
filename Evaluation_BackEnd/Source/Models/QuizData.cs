@@ -14,11 +14,11 @@ namespace Evaluation_BackEnd.Models
         {
             
         }
-        public QuizData(string techname, string attemptedon ,List<AttemptedConcept> conceptattempted)
+        public QuizData(TemporaryData temporary)
         {
-            TechName = techname;
-            AttemptedOn = attemptedon;
-            ConceptsAttempted.AddRange(conceptattempted);
+            TechName = temporary.TechName;
+            AttemptedOn =temporary.AttemptedOn;
+            ConceptsAttempted.AddRange(temporary.ConceptsAttempted);
         }
     }
 }

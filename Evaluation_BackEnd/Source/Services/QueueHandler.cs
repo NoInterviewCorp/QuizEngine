@@ -49,8 +49,8 @@ namespace Learners.Services
             if (TemporaryQuizData.TemporaryUserData.ContainsKey(username))
             {
                 var tempdata = TemporaryQuizData.TemporaryUserData[username];
-                QuizData quizdata = new QuizData(tempdata.TechName, tempdata.AttemptedOn, tempdata.ConceptsAttempted);
-                UserData userdata = new UserData(username, quizdata);
+                QuizData quiz = new QuizData(tempdata);
+                UserData userdata = new UserData(username,quiz);
                 Model.BasicPublish(exchange: "KnowledgeGraphExchange",
                     routingKey: "User.QuizData",
                     basicProperties: null,
