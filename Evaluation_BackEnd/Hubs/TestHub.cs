@@ -34,10 +34,12 @@ namespace asp_back.hubs
             await methods.EvaluateAnswer(Username, QuestionId, OptionId);
             await Clients.Caller.SendAsync("Evaluating Answer");
         }
-        public async Task GetQuestionsBatch(string username, string tech, List<string> concept)
+        public async Task GetQuestionsBatch(string username, string tech, List<string> concepts)
         {
+            temp = new TemporaryData(tech, concepts);
+            methods.OnStart(temp, username);
             Console.WriteLine("Recieved request for questions");
-            methods.GetQuestionsBatch(username, tech, concept);
+            methods.GetQuestionsBatch(username, tech, concepts);
             await Clients.Caller.SendAsync("ReceivedRequest");
         }
         public override async Task OnConnectedAsync()
@@ -51,7 +53,6 @@ namespace asp_back.hubs
             {
                 ConnectionData.userconnectiondata.Remove(username);
                 ConnectionData.userconnectiondata.Add(username, ConnectionId);
-                TemporaryQuizData.TemporaryUserData.TryAdd(username,new TemporaryData());
             }
             Console.WriteLine(ConnectionData.userconnectiondata[username]);
             await base.OnConnectedAsync();

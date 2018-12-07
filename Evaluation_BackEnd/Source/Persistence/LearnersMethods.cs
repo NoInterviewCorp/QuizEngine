@@ -68,7 +68,11 @@ namespace Evaluation_BackEnd.Persistence
 
         public void OnStart(TemporaryData temp, string username)
         {
-            TemporaryQuizData.TemporaryUserData[username] = temp;
+            if (!(TemporaryQuizData.TemporaryUserData.TryAdd(username,temp)))
+            {
+                TemporaryQuizData.TemporaryUserData.Remove(username);
+                TemporaryQuizData.TemporaryUserData.Add(username,temp);
+            }
         }
 
         public void GetQuestionsBatch(string username, string tech, List<string> concepts)
