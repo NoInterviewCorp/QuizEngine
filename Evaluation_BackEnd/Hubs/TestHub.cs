@@ -67,4 +67,4 @@ namespace asp_back.hubs
             await base.OnDisconnectedAsync(exception);
         }
     }
-}
+}   
