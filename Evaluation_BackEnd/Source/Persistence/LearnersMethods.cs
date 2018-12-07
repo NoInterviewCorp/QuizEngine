@@ -25,7 +25,7 @@ namespace Evaluation_BackEnd.Persistence
             Console.WriteLine("Evaluate function called");
             Console.WriteLine(username +"   "+QuestionId+"   "+OptionId);
             var question = TemporaryQuizData.TemporaryUserData[username].QuestionsAttempted.Find(v => v.QuestionId == QuestionId);
-            Console.WriteLine(question);
+            Console.WriteLine(question.QuestionId);
             if (question != null)
             {
                 Console.WriteLine(question.CorrectOptionId);
