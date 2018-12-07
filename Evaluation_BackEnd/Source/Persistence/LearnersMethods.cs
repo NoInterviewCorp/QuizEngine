@@ -22,9 +22,12 @@ namespace Evaluation_BackEnd.Persistence
 
         public async Task EvaluateAnswer(string username, string QuestionId, int OptionId)
         {
+            Console.WriteLine("Evaluate function called");
             var question = TemporaryQuizData.TemporaryUserData[username].QuestionsAttempted.FirstOrDefault(v => v.QuestionId == QuestionId);
             if (question != null)
             {
+                Console.WriteLine(question.CorrectOptionId);
+                Console.WriteLine(OptionId);
                 if (question.CorrectOptionId == OptionId)
                 {
                     foreach (var concept in question.Concepts)
