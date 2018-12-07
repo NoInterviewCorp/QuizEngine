@@ -43,9 +43,7 @@ namespace Evaluation_BackEnd.Persistence
                             SendEvaluationToGraph(username, concept.Name, (int)question.BloomLevel);
                         }
                     }
-                    Console.WriteLine("answer to the question ");
-                    Console.WriteLine(question.ProblemStatement);
-                    Console.WriteLine("is right");
+                    Console.WriteLine("answer to the question \"{0}\" is right",question.ProblemStatement);
                     Console.WriteLine("Sending data to queue");
                 }
                 else
@@ -58,9 +56,7 @@ namespace Evaluation_BackEnd.Persistence
                             TemporaryQuizData.TemporaryUserData[username].ConceptsAttempted.FirstOrDefault(c => c.ConceptName == concept.Name).TotalQuestionAttempted++;
                         }
                     }
-                    Console.WriteLine("answer to the question ");
-                    Console.WriteLine(question.ProblemStatement);
-                    Console.WriteLine("is wrong");
+                    Console.WriteLine("answer to the question \"{0}\" is wrong",question.ProblemStatement);
                 }
             }
             await queuehandler.hubContext.Clients.Client(ConnectionData.userconnectiondata[username]).SendAsync("Answer Evaluated");

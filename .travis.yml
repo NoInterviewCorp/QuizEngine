@@ -11,3 +11,5 @@ script:
   - cd Evaluation_BackEnd
   - dotnet restore
   - dotnet build
+after-success:
+  - /bin/bash deploy.sh
