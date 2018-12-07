@@ -23,7 +23,9 @@ namespace Evaluation_BackEnd.Persistence
         public async Task EvaluateAnswer(string username, string QuestionId, int OptionId)
         {
             Console.WriteLine("Evaluate function called");
+            Console.WriteLine(username +"   "+QuestionId+"   "+OptionId);
             var question = TemporaryQuizData.TemporaryUserData[username].QuestionsAttempted.FirstOrDefault(v => v.QuestionId == QuestionId);
+            Console.WriteLine(question);
             if (question != null)
             {
                 Console.WriteLine(question.CorrectOptionId);
