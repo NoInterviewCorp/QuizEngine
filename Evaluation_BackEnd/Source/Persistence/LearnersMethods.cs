@@ -57,7 +57,7 @@ namespace Evaluation_BackEnd.Persistence
                     Console.WriteLine("is right");
                 }
             }
-            await queuehandler.hubContext.Clients.Client(ConnectionData.userconnectiondata[username]).SendAsync("GetQuestion");
+            await queuehandler.hubContext.Clients.Client(ConnectionData.userconnectiondata[username]).SendAsync("Answer Evaluated");
         }
         public void SendEvaluationToGraph(string username, string concept, int bloom)
         {
