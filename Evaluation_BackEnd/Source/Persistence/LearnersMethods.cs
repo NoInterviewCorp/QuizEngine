@@ -46,6 +46,7 @@ namespace Evaluation_BackEnd.Persistence
                     Console.WriteLine("answer to the question ");
                     Console.WriteLine(question.ProblemStatement);
                     Console.WriteLine("is right");
+                    Console.WriteLine("Sending data to queue");
                 }
                 else
                 {

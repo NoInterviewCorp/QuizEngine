@@ -9,6 +9,7 @@ services:
         labels:
             - "SERVICE_5001_NAME=QuizEngine"
             - "SERVICE_TAGS=QuizEngineTag"
+        restart: always
 networks:
     potentiometer-network:
         name: potentiometer-network
