@@ -45,6 +45,7 @@ namespace Learners.Services
         public async void OnFinish(Object Username)
         {
             var username = (string)Username; 
+            Console.WriteLine(username);
             var tempdata = TemporaryQuizData.TemporaryUserData[username];
             QuizData quizdata = new QuizData(tempdata.TechName, tempdata.AttemptedOn, tempdata.ConceptsAttempted);
             UserData userdata = new UserData(username, quizdata);
