@@ -44,16 +44,19 @@ namespace Learners.Services
         }
         public async void OnFinish(Object Username)
         {
-            var username = (string)Username; 
+            var username = (string)Username;
             Console.WriteLine(username);
-            var tempdata = TemporaryQuizData.TemporaryUserData[username];
-            QuizData quizdata = new QuizData(tempdata.TechName, tempdata.AttemptedOn, tempdata.ConceptsAttempted);
-            UserData userdata = new UserData(username, quizdata);
-            Model.BasicPublish(exchange: "KnowledgeGraphExchange",
-                routingKey: "User.QuizData",
-                basicProperties: null,
-                body: userdata.Serialize());
-            await hubContext.Clients.Client(ConnectionData.userconnectiondata[username]).SendAsync("Quiz Over", userdata);
+            if (TemporaryQuizData.TemporaryUserData.ContainsKey(username))
+            {
+                var tempdata = TemporaryQuizData.TemporaryUserData[username];
+                QuizData quizdata = new QuizData(tempdata.TechName, tempdata.AttemptedOn, tempdata.ConceptsAttempted);
+                UserData userdata = new UserData(username, quizdata);
+                Model.BasicPublish(exchange: "KnowledgeGraphExchange",
+                    routingKey: "User.QuizData",
+                    basicProperties: null,
+                    body: userdata.Serialize());
+                await hubContext.Clients.Client(ConnectionData.userconnectiondata[username]).SendAsync("Quiz Over", userdata);
+            }
         }
         public void QuestionBatchResponseHandler()
         {
@@ -72,7 +75,7 @@ namespace Learners.Services
                     Console.WriteLine(data.ResponseList.Count());
                     TemporaryQuizData.TemporaryUserData[data.Username].QuestionsAttempted.AddRange(data.ResponseList);
                     StartTimer(data.Username);
-                    foreach(var v in data.ResponseList)
+                    foreach (var v in data.ResponseList)
                     {
                         Console.WriteLine(v.ProblemStatement);
                     }
