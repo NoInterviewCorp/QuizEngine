@@ -59,7 +59,7 @@ namespace Evaluation_BackEnd.Persistence
                     }
                     Console.WriteLine("answer to the question ");
                     Console.WriteLine(question.ProblemStatement);
-                    Console.WriteLine("is right");
+                    Console.WriteLine("is wrong");
                 }
             }
             await queuehandler.hubContext.Clients.Client(ConnectionData.userconnectiondata[username]).SendAsync("Answer Evaluated");
