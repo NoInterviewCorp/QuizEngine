@@ -9,6 +9,7 @@ using Evaluation_BackEnd.StaticData;
 using Microsoft.AspNetCore.SignalR;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using Evaluation_BackEnd.Persistence;
 namespace Learners.Services
 {
     public class QueueHandler : IDisposable
@@ -36,6 +37,23 @@ namespace Learners.Services
         {
             connection.Close();
         }
+        public void StartTimer(string Username)
+        {
+            Console.WriteLine("---Timer Started---");
+            var timer = new System.Threading.Timer(OnFinish, Username, 300000, -1);
+        }
+        public async void OnFinish(Object Username)
+        {
+            var username = (string)Username;
+            var tempdata = TemporaryQuizData.TemporaryUserData[username];
+            QuizData quizdata = new QuizData(tempdata.TechName, tempdata.AttemptedOn, tempdata.ConceptsAttempted);
+            UserData userdata = new UserData(username, quizdata);
+            Model.BasicPublish(exchange: "KnowledgeGraphExchange",
+                routingKey: "User.QuizData",
+                basicProperties: null,
+                body: userdata.Serialize());
+            await hubContext.Clients.Client(ConnectionData.userconnectiondata[username]).SendAsync("Quiz Over", userdata);
+        }
         public void QuestionBatchResponseHandler()
         {
             var channel = connection.CreateModel();
@@ -51,6 +69,7 @@ namespace Learners.Services
                     Console.WriteLine(data);
                     Console.WriteLine(data.Username);
                     Console.WriteLine(data.ResponseList.Count());
+                    StartTimer(data.Username);
                     TemporaryQuizData.TemporaryUserData[data.Username].QuestionsAttempted.AddRange(data.ResponseList);
                     foreach(var v in data.ResponseList)
                     {
@@ -76,26 +95,6 @@ namespace Learners.Services
                 }
             };
             channel.BasicConsume("Contributer_QuizEngine_Questions", false, consumer);
-        }
-        public void ConceptResponseHandler()
-        {
-            var channel = connection.CreateModel();
-            var consumer = new AsyncEventingBasicConsumer(channel);
-            consumer.Received += async (model, ea) =>
-            {
-                Console.WriteLine("<--------------------Recieved Questions--------------------->");
-                var body = ea.Body;
-                var data = (ConceptResponse)body.DeSerialize(typeof(ConceptResponse));
-                Console.WriteLine(data);
-                Console.WriteLine("<------------------------------------------------------------>");
-                channel.BasicAck(ea.DeliveryTag, false);
-                var routingKey = ea.RoutingKey;
-                Console.WriteLine(" - Routing Key <{0}>", routingKey);
-                Console.WriteLine("- Delivery Tag <{0}>", ea.DeliveryTag);
-                await hubContext.Clients.Client(ConnectionData.userconnectiondata[key: data.username]).SendAsync("", data.concepts);
-                await Task.Yield();
-            };
-            channel.BasicConsume("QuizEngine_KnowledgeGraph", false, consumer);
         }
     }
 }

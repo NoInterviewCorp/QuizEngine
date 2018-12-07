@@ -65,18 +65,6 @@ namespace Evaluation_BackEnd.Persistence
             var serilaizeddata = requestdata.Serialize();
             queuehandler.Model.BasicPublish("KnowledgeGraphExchange", "Result.Update", null, serilaizeddata);
         }
-        public async void OnFinish(Object Username)
-        {
-            var username = (string)Username;
-            var tempdata = TemporaryQuizData.TemporaryUserData[username];
-            QuizData quizdata = new QuizData(tempdata.TechName,tempdata.AttemptedOn,tempdata.ConceptsAttempted);
-            UserData userdata = new UserData(username,quizdata);
-            queuehandler.Model.BasicPublish(exchange:"KnowledgeGraphExchange",
-                routingKey:"User.QuizData",
-                basicProperties:null,
-                body:userdata.Serialize());
-            await queuehandler.hubContext.Clients.Client(ConnectionData.userconnectiondata[username]).SendAsync("Quiz Over",userdata);
-        }
 
         public void OnStart(TemporaryData temp, string username)
         {
@@ -101,11 +89,6 @@ namespace Evaluation_BackEnd.Persistence
                 Console.WriteLine(e.Message);
                 throw;
             }
-        }
-        public void StartTimer(string Username)
-        {
-            Console.WriteLine("---Timer Started---");
-            var timer = new System.Threading.Timer(OnFinish, Username, 300000, -1);
         }
     }
 }
