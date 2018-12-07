@@ -29,15 +29,6 @@ namespace asp_back.hubs
             methods.GetQuestionsBatch(username, tech, concepts);
             await Clients.Caller.SendAsync("Temporary Object Created");
         }
-        public async Task OnFinish()
-        {
-            await Clients.Caller.SendAsync("Data Seeded");
-        }
-        // public async Task CountQuizAttempts (string tech, string username) {
-        //     bool AttemptedEarlier = false;
-        //     AttemptedEarlier = methods.CountQuizAttempts (tech, username);
-        //     await Clients.Caller.SendAsync ("Got the Response", AttemptedEarlier);
-        // }
         public async Task EvaluateAnswer(string Username, string QuestionId, int OptionId)
         {
             await methods.EvaluateAnswer(Username, QuestionId, OptionId);
@@ -71,6 +62,7 @@ namespace asp_back.hubs
             {
                 var user = ConnectionData.userconnectiondata.First(kvp => kvp.Value == Context.ConnectionId);
                 ConnectionData.userconnectiondata.Remove(user.Key);
+                TemporaryQuizData.TemporaryUserData.Remove(user.Key);
             }
             await base.OnDisconnectedAsync(exception);
         }
