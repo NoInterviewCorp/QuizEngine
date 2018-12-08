@@ -40,6 +40,9 @@ namespace Evaluation_BackEnd.Persistence
                             TemporaryQuizData.TemporaryUserData[username].ConceptsAttempted
                                 .FirstOrDefault(c => c.ConceptName == concept.Name)
                                 .TotalQuestionAttempted++;
+                            Console.WriteLine(TemporaryQuizData.TemporaryUserData[username].ConceptsAttempted
+                                .FirstOrDefault(c => c.ConceptName == concept.Name)
+                                .TotalQuestionAttempted);
                             SendEvaluationToGraph(username, concept.Name, (int)question.BloomLevel);
                         }
                     }

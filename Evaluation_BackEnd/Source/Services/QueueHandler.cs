@@ -90,7 +90,7 @@ namespace Learners.Services
                     Console.WriteLine(" - Routing Key <{0}>", routingKey);
                     Console.WriteLine("- Delivery Tag <{0}>", ea.DeliveryTag);
                     Console.WriteLine(ConnectionData.userconnectiondata[data.Username]);
-                    await hubContext.Clients.Client(ConnectionData.userconnectiondata[data.Username]).SendAsync("GetQuestion", data.ResponseList);
+                    await hubContext.Clients.Client(ConnectionData.userconnectiondata[data.Username]).SendAsync("GetQuestion", data.ResponseList,data.ResponseList.Count());
                     await Task.Yield();
                 }
                 catch (Exception e)
