@@ -12,6 +12,7 @@ namespace Evaluation_BackEnd.Persistence
         // List<Question> GetAllQuestions(string technology,string topic,BloomsLevel blooms);
 
         void OnStart(TemporaryData temp, string username);
+        void EndQuiz(string username);
         void GetQuestionsBatch(string username, string tech, List<string> concepts);
         Task EvaluateAnswer(string username, string QuestionId, int OptionId);
     }

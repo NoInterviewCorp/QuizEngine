@@ -79,7 +79,10 @@ namespace Evaluation_BackEnd.Persistence
                 TemporaryQuizData.TemporaryUserData.Add(username,temp);
             }
         }
-
+        public  void EndQuiz(string username)
+        {
+            queuehandler.OnFinish(username);
+        }
         public void GetQuestionsBatch(string username, string tech, List<string> concepts)
         {
             Console.WriteLine("---Interface method invoked---");

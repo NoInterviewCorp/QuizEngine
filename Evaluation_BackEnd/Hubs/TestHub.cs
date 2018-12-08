@@ -29,6 +29,11 @@ namespace asp_back.hubs
             methods.GetQuestionsBatch(username, tech, concepts);
             await Clients.Caller.SendAsync("Temporary Object Created");
         }
+        public async Task EndQuiz(string username)
+        {
+            methods.EndQuiz(username);
+            await Task.Yield();
+        }
         public async Task EvaluateAnswer(string Username, string QuestionId, int OptionId)
         {
             await methods.EvaluateAnswer(Username, QuestionId, OptionId);
