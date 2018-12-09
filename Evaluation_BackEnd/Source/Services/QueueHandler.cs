@@ -77,10 +77,13 @@ namespace Learners.Services
                     if(data.ResponseList.Count()<1)
                     {
                         Console.WriteLine("no questions found in database");
-                        await Task.Yield();
+                        
                     }
-                    TemporaryQuizData.TemporaryUserData[data.Username].QuestionsAttempted.AddRange(data.ResponseList);
-                    StartTimer(data.Username);
+                    else 
+                    {
+                        StartTimer(data.Username);
+                        TemporaryQuizData.TemporaryUserData[data.Username].QuestionsAttempted.AddRange(data.ResponseList);
+                    }
                     foreach (var v in data.ResponseList)
                     {
                         Console.WriteLine(v.ProblemStatement);
