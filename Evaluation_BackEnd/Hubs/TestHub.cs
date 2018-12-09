@@ -50,6 +50,7 @@ namespace asp_back.hubs
         public async Task RecommendResource(string username)
         {
             methods.RecommendResource(username);
+            Console.WriteLine("recommend Resource Called");
             await Clients.Caller.SendAsync("Resource Request Recieved");
         }
         public override async Task OnConnectedAsync()
