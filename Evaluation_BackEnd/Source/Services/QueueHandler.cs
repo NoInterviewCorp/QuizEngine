@@ -55,6 +55,7 @@ namespace Learners.Services
                     routingKey: "User.QuizData",
                     basicProperties: null,
                     body: userdata.Serialize());
+                TemporaryQuizData.TemporaryUserData.Remove(username);
                 await hubContext.Clients.Client(ConnectionData.userconnectiondata[username]).SendAsync("Quiz Over", userdata);
             }
         }
