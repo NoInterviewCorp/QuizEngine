@@ -36,7 +36,7 @@ namespace Learners.Services
         public void Dispose()
         {
             connection.Close();
-        }
+        }   
         public void StartTimer(string Username)
         {
             Console.WriteLine("---Timer Started---");
