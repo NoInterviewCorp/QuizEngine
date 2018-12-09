@@ -106,5 +106,41 @@ namespace Learners.Services
             };
             channel.BasicConsume("Contributer_QuizEngine_Questions", false, consumer);
         }
+        public void RecommendedResourceResponseHnadler()
+        {
+            var channel = connection.CreateModel();
+            var consumer = new AsyncEventingBasicConsumer(channel);
+            consumer.Received += async (model, ea) =>
+            {
+                try
+                {
+                    Console.WriteLine("<--------------------Recieved Questions--------------------->");
+                    channel.BasicAck(ea.DeliveryTag, false);
+                    var body = ea.Body;
+                    var data = (ResourceResponse)body.DeSerialize(typeof(ResourceResponse));
+                    Console.WriteLine(data);
+                    Console.WriteLine(data.Username);
+                    Console.WriteLine("Got Recommended Resources from Queue");
+                    Console.WriteLine("<------------------------------------------------------------>");
+                    var routingKey = ea.RoutingKey;
+                    Console.WriteLine(" - Routing Key <{0}>", routingKey);
+                    Console.WriteLine("- Delivery Tag <{0}>", ea.DeliveryTag);
+                    Console.WriteLine(ConnectionData.userconnectiondata[data.Username]);
+                    await hubContext.Clients.Client(ConnectionData.userconnectiondata[data.Username]).SendAsync("GetResources",data.Resources);
+                    await Task.Yield();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("----------------------EXCEPTION-MESSAGE------------------------------------");
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine("----------------------STACK-TRACE-----------------------------------------");
+                    Console.WriteLine(e.StackTrace);
+                    Console.WriteLine("-------------------------INNER-EXCEPTION-----------------------------");
+                    Console.WriteLine(e.InnerException);
+                    // return null;
+                }
+            };
+            channel.BasicConsume("Contributer_QuizEngine_Reource", false, consumer);
+        }
     }
 }

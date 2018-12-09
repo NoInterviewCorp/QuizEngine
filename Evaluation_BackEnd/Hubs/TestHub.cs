@@ -47,6 +47,11 @@ namespace asp_back.hubs
             methods.GetQuestionsBatch(username, tech, concepts);
             await Clients.Caller.SendAsync("ReceivedRequest");
         }
+        public async Task RecommendResource(string username)
+        {
+            methods.RecommendResource(username);
+            await Clients.Caller.SendAsync("Resource Request Recieved");
+        }
         public override async Task OnConnectedAsync()
         {
             var httpContext = Context.GetHttpContext();

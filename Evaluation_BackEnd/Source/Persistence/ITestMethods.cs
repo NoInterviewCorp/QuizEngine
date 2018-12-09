@@ -15,5 +15,6 @@ namespace Evaluation_BackEnd.Persistence
         void EndQuiz(string username);
         void GetQuestionsBatch(string username, string tech, List<string> concepts);
         Task EvaluateAnswer(string username, string QuestionId, int OptionId);
+        void RecommendResource(string username);
     }
 }

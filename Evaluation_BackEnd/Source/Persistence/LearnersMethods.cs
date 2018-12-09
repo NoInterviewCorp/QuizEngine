@@ -40,6 +40,9 @@ namespace Evaluation_BackEnd.Persistence
                             TemporaryQuizData.TemporaryUserData[username].ConceptsAttempted
                                 .FirstOrDefault(c => c.ConceptName == concept.Name)
                                 .TotalQuestionAttempted++;
+                            TemporaryQuizData.TemporaryUserData[username].ConceptsAttempted
+                                .FirstOrDefault(c => c.ConceptName == concept.Name)
+                                .QuestionAttemptedCorrect++;
                             Console.WriteLine("debug log "+TemporaryQuizData.TemporaryUserData[username].ConceptsAttempted
                                 .FirstOrDefault(c => c.ConceptName == concept.Name)
                                 .TotalQuestionAttempted);
@@ -101,6 +104,16 @@ namespace Evaluation_BackEnd.Persistence
                 Console.WriteLine(e.Message);
                 throw;
             }
+        }
+        public void RecommendResource(string username)
+        {
+            var serializeddata = username.Serialize();
+            queuehandler.Model.BasicPublish(
+                exchange:"KnowledgeGraphExchange",
+                routingKey:"Recommend.Resource",
+                basicProperties:null,
+                body:serializeddata
+            );
         }
     }
 }
