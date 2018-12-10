@@ -40,7 +40,7 @@ namespace Learners.Services
         public void StartTimer(string Username)
         {
             Console.WriteLine("---Timer Started---");
-            var timer = new System.Threading.Timer(OnFinish, Username, 60000, -1);
+            var timer = new System.Threading.Timer(OnFinish, Username, 15000, -1);
         }
         public async void OnFinish(Object Username)
         {
